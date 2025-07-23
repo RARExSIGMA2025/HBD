@@ -1,160 +1,184 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎂 Nitin's B-Day Live 🎉</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Birthday Nitin 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; }
-    html, body {
+    :root {
+      --purple: #e9d8ff;
+      --aqua: #c6f0ff;
+      --white: #ffffff;
+      --bg: #0a0a23;
+    }
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Fredoka One', cursive;
-      background: linear-gradient(135deg, #fcb045, #fd1d1d, #833ab4);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-      color: #fff;
+      box-sizing: border-box;
+    }
+    html, body {
+      background: var(--bg);
+      font-family: 'Orbitron', sans-serif;
+      color: var(--white);
       overflow-x: hidden;
-    }@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.container {
-  padding: 1.5rem;
-  text-align: center;
-  max-width: 480px;
-  margin: auto;
-}
-
-h1 {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.3rem;
-  text-shadow: 2px 2px #000;
-  margin-bottom: 1rem;
-  color: #00ffd5;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.msg {
-  font-size: 1rem;
-  margin: 1rem 0;
-  line-height: 1.5;
-  background: rgba(0,0,0,0.3);
-  padding: 1rem;
-  border-radius: 16px;
-  box-shadow: 0 0 10px #fff3;
-}
-
-.age-box {
-  background: #000;
-  color: #0f0;
-  font-family: 'Press Start 2P', cursive;
-  padding: 1rem;
-  margin: 2rem auto;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  box-shadow: 0 0 15px #0f0;
-}
-
-.btn {
-  margin-top: 1rem;
-  background: #00ffd5;
-  color: #000;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 0 10px #00ffd5;
-  font-weight: bold;
-  transition: transform 0.2s ease;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-.confetti {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 999;
-}
-
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 20px;
+    }
+    img {
+      width: 100%;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px var(--aqua);
+    }
+    h1 {
+      color: var(--aqua);
+      font-family: 'Pacifico', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .age-box {
+      background: linear-gradient(145deg, var(--purple), var(--aqua));
+      color: #000;
+      padding: 15px 25px;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 0 15px var(--aqua);
+      margin: 15px 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .btn-play {
+      background: var(--aqua);
+      color: #000;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 20px;
+      margin-top: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 10px var(--aqua);
+      cursor: pointer;
+      animation: flicker 2s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+    @media (min-width: 481px) {
+      body::before {
+        content: 'Mobile view only 🚫';
+        color: white;
+        font-size: 2rem;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      body > * { display: none !important; }
+    }
   </style>
 </head>
 <body>
-  <canvas class="confetti"></canvas>
-  <div class="container">
-    <h1>🎉 Happy Birthday Nitin 🎉</h1>
-    <div class="msg">
-      You’ve completed 16 years of being awesome 😎<br>
-      I’m proud to call you my brother. You light up everything (even when your charger’s missing 😜)
-    </div>
-    <div class="age-box" id="liveAge">Loading age...</div>
-    <button class="btn" onclick="document.getElementById('music').play()">Play B'Day Beat 🔊</button>
-    <audio id="music" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
-  </div>
+  <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Happy Birthday Nitin" />
+  <h1>Happy Birthday Nitin 🎂</h1>
+  <div class="age-box" id="age">Loading age...</div>
+  <button class="btn-play" onclick="playAudio()">Play Birthday Song 🎵</button>
+  <canvas class="confetti" id="confetti-canvas"></canvas><audio id="birthday-audio" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
   <script>
+    const startTime = new Date("2009-07-23T00:00:00+05:30");
+    const ageBox = document.getElementById("age");
+
     function updateAge() {
-      const birthDate = new Date('2009-07-23T00:00:00+05:30');
       const now = new Date();
-      let diff = now - birthDate;const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-  diff -= years * (1000 * 60 * 60 * 24 * 365.25);
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  diff -= days * (1000 * 60 * 60 * 24);
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  diff -= hours * (1000 * 60 * 60);
-  const minutes = Math.floor(diff / (1000 * 60));
-  diff -= minutes * (1000 * 60);
-  const seconds = Math.floor(diff / 1000);
+      let diff = (now - startTime) / 1000;
 
-  document.getElementById("liveAge").innerText = `🕐 Live Age: ${years}y ${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-setInterval(updateAge, 1000);
-updateAge();
+      const y = Math.floor(diff / (365.25 * 24 * 3600));
+      diff -= y * 365.25 * 24 * 3600;
 
-// Confetti effect
-const canvas = document.querySelector('.confetti');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+      const d = Math.floor(diff / (24 * 3600));
+      diff -= d * 24 * 3600;
 
-const confetti = Array.from({ length: 100 }, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  r: Math.random() * 6 + 4,
-  d: Math.random() * 50,
-  color: `hsl(${Math.random() * 360}, 100%, 50%)`
-}));
+      const h = Math.floor(diff / 3600);
+      diff -= h * 3600;
 
-function drawConfetti() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  confetti.forEach((c, i) => {
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
-    ctx.fillStyle = c.color;
-    ctx.fill();
-    c.y += Math.cos(c.d) + 1 + c.r / 2;
-    c.x += Math.sin(c.d);
-    if (c.y > canvas.height) {
-      c.y = -10;
-      c.x = Math.random() * canvas.width;
+      const m = (diff / 60).toFixed(3);
+
+      ageBox.innerText = `${y}y ${d}d ${h}h ${m}m`;
     }
-  });
-}
-setInterval(drawConfetti, 30);
+    setInterval(updateAge, 1000);
 
-  </script>
-</body>
+    function playAudio() {
+      document.getElementById("birthday-audio").play();
+    }
+
+    // Confetti JS effect
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+    const ctx = confettiCanvas.getContext('2d');
+    const confetti = [];
+
+    for (let i = 0; i < 150; i++) {
+      confetti.push({
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * confettiCanvas.height,
+        r: Math.random() * 6 + 2,
+        d: Math.random() * 100 + 10,
+        color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+        tilt: Math.random() * 10 - 10,
+        tiltAngle: 0,
+      });
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confetti.forEach(c => {
+        ctx.beginPath();
+        ctx.lineWidth = c.r;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 2, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r);
+        ctx.stroke();
+      });
+      updateConfetti();
+    }
+
+    function updateConfetti() {
+      confetti.forEach(c => {
+        c.y += Math.cos(c.d) + 1 + c.r / 2;
+        c.tiltAngle += 0.1;
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+
+        if (c.y > confettiCanvas.height) {
+          c.y = -10;
+          c.x = Math.random() * confettiCanvas.width;
+        }
+      });
+    }
+
+    (function animate() {
+      drawConfetti();
+      requestAnimationFrame(animate);
+    })();
+  </script></body>
 </html>
