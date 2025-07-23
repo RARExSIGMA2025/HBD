@@ -314,22 +314,14 @@
     <script>
         // JavaScript for dynamic age calculation and animations
 
-        // Initial age provided by the user
-        const initialYears = 11;
-        const initialDays = 60;
-        const initialHours = 5;
-        const initialMinutes = 25.695;
-
-        // Convert initial age to total minutes for easier calculation
-        // Using average days per year (365.25) to account for leap years
-        const initialTotalMinutes =
-            (initialYears * 365.25 * 24 * 60) +
-            (initialDays * 24 * 60) +
-            (initialHours * 60) +
-            initialMinutes;
+        // Birth date of Nitin
+        const birthDate = new Date('2009-07-23T00:00:00'); // July 23, 2009, 00:00:00
 
         // Record the time when the page loaded
         const pageLoadTime = Date.now(); // Milliseconds since epoch
+
+        // Calculate initial total minutes from birth date to page load time
+        const initialTotalMinutes = (pageLoadTime - birthDate.getTime()) / (1000 * 60);
 
         /**
          * Formats a given number of minutes into a human-readable string
