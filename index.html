@@ -126,17 +126,18 @@
         <section class="gallery w-full my-8">
             <h2 class="text-center text-3xl md:text-4xl font-bold text-purple-400 mb-6 font-['Great_Vibes'] neon-glow">Encrypted Memories</h2>
             <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 px-4 justify-center">
+                <!-- Rearranged images: HBD4, HBD3, HBD1, HBD2 -->
                 <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
-                </div>
-                <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
                 </div>
                 <div class="gallery-item tech-panel p-3">
                     <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
                 </div>
                 <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                </div>
+                <div class="gallery-item tech-panel p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
                 </div>
             </div>
         </section>
@@ -155,7 +156,7 @@
             const now = new Date(); // Current date and time
             const diff = now - birth; // Difference in milliseconds
 
-            // Calculate years, days, hours, and minutes
+            // Calculate years, days, hours, minutes, and milliseconds
             const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
             const remaining = diff % (1000 * 60 * 60 * 24 * 365.25);
             const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
@@ -163,15 +164,18 @@
             const hours = Math.floor(remainingDays / (1000 * 60 * 60));
             const remainingHours = remainingDays % (1000 * 60 * 60);
             const mins = Math.floor(remainingHours / (1000 * 60));
+            const remainingMins = remainingHours % (1000 * 60);
+            const secs = Math.floor(remainingMins / 1000);
+            const ms = Math.floor(remainingMins % 1000); // Milliseconds
 
-            // Update the age display with a "System Uptime" format
-            document.getElementById("age").innerHTML = `System Uptime: ${years} yrs ${days} days ${hours} hrs ${mins} mins<span class="blinking-cursor"></span>`;
+            // Update the age display with a "System Uptime" format including milliseconds
+            document.getElementById("age").innerHTML = `System Uptime: ${years} yrs ${days} days ${hours} hrs ${mins} mins ${secs} secs ${ms} ms<span class="blinking-cursor"></span>`;
         }
 
         // Initial call to update age
         updateAge();
-        // Update age every minute
-        setInterval(updateAge, 60000);
+        // Update age more frequently to show milliseconds (every 100ms)
+        setInterval(updateAge, 100);
 
         // Optional: Play audio on user interaction for better browser compatibility
         document.addEventListener('DOMContentLoaded', () => {
