@@ -1,85 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Nitin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(120deg, #ffdde1, #ee9ca7);
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-      text-align: center;
-    }
+      padding: 0;
+      box-sizing: border-box;
+    }body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1d2b64, #f8cdda);
+  color: #fff;
+  overflow-x: hidden;
+}
 
-    .card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 2rem;
-      max-width: 500px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      animation: fadeIn 2s ease;
-    }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  min-height: 100vh;
+  padding: 2rem;
+  position: relative;
+}
 
-    h1 {
-      font-size: 2.2rem;
-      color: #e91e63;
-      margin-bottom: 1rem;
-    }
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: #00ffc8;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 15px rgba(0, 255, 200, 0.8);
+  animation: glow 2s ease-in-out infinite alternate;
+}
 
-    p {
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-      line-height: 1.6;
-    }
+@keyframes glow {
+  from { text-shadow: 0 0 10px #00ffc8; }
+  to { text-shadow: 0 0 20px #00ffc8, 0 0 30px #00ffc8; }
+}
 
-    .signature {
-      margin-top: 1.5rem;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #555;
-    }
+p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards;
+}
 
-    .balloons {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100vh;
-      background: url('https://i.imgur.com/C6Z0z4v.png') repeat-x;
-      background-size: contain;
-      animation: float 20s linear infinite;
-      opacity: 0.4;
-      z-index: -1;
-    }
+p:nth-child(2) { animation-delay: 0.3s; }
+p:nth-child(3) { animation-delay: 0.6s; }
+p:nth-child(4) { animation-delay: 0.9s; }
+p:nth-child(5) { animation-delay: 1.2s; }
+p:nth-child(6) { animation-delay: 1.5s; }
 
-    @keyframes float {
-      0% { background-position: 0% 100%; }
-      100% { background-position: 100% 0%; }
-    }
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.signature {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: #ffeb3b;
+}
+
+.floating-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.floating-stars::before {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background: url('https://media.tenor.com/vpN2VkuPybQAAAAd/glitter-stars.gif') repeat;
+  animation: moveStars 120s linear infinite;
+}
+
+@keyframes moveStars {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-50%, -50%); }
+}
+
+.glitch {
+  font-size: 3rem;
+  color: #0ff;
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px red; }
+  25% { text-shadow: -2px -2px blue; }
+  50% { text-shadow: 2px -2px green; }
+  75% { text-shadow: -2px 2px yellow; }
+  100% { text-shadow: 2px 2px red; }
+}
+
+.neon-border {
+  border: 2px solid #00ffc8;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 20px #00ffc8;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  background: #00ffc8;
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ffc8;
+  transition: transform 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+audio {
+  display: none;
+}
+
+.live-age {
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #ffe57f;
+  font-weight: bold;
+  animation: fadeInUp 2s ease forwards;
+}
+
   </style>
 </head>
 <body>
-  <div class="balloons"></div>
-  <div class="card">
-    <h1>Happy Birthday, Nitin 🎂</h1>
-    <p>You are the best person who makes my life truly special.</p>
-    <p>On your birthday, I just want to say – thank you for being you.</p>
-    <p>Your presence brings light, love, and laughter into my world.</p>
-    <p>May this day bring you as much happiness as you’ve given me.</p>
-    <p>Happy Birthday to the one who means everything to me.</p>
-    <div class="signature">– From someone who won’t say all this in public 😌</div>
+  <div class="floating-stars"></div>
+  <div class="container">
+    <div class="neon-border">
+      <h1 class="glitch">Happy Birthday Nitin 🎉</h1>
+      <p>You are the best person who makes my life truly special.</p>
+      <p>On your birthday, I just want to say – thank you for being you.</p>
+      <p>Your presence brings light, love, and laughter into my world.</p>
+      <p>May this day bring you as much happiness as you’ve given me.</p>
+      <p>Happy Birthday to the one who means everything to me.</p>
+      <p class="signature">– From your proud brother 💻</p>
+      <div class="live-age" id="liveAge">Calculating your age...</div>
+      <button class="btn" onclick="document.getElementById('music').play()">Play Surprise Song 🎵</button>
+    </div>
   </div>
+  <audio id="music" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+  <script>
+    function updateAge() {
+      const birthDate = new Date('2009-07-23T05:30:00+05:30');
+      const now = new Date();
+      let diff = now - birthDate;const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+  diff -= years * (1000 * 60 * 60 * 24 * 365.25);
+
+  const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+  diff -= months * (1000 * 60 * 60 * 24 * 30.44);
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  diff -= days * (1000 * 60 * 60 * 24);
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  diff -= hours * (1000 * 60 * 60);
+
+  const minutes = Math.floor(diff / (1000 * 60));
+  diff -= minutes * (1000 * 60);
+
+  const seconds = Math.floor(diff / 1000);
+
+  document.getElementById("liveAge").innerText = `Live Age: ${years} Years, ${months} Months, ${days} Days, ${hours} Hrs, ${minutes} Min, ${seconds} Sec`;
+}
+
+setInterval(updateAge, 1000);
+updateAge();
+
+  </script>
 </body>
 </html>
