@@ -2,192 +2,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Legendary Birthday | Nitin</title>
+  <title>Legendary Birthday | HBD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;
-}
-
-body {
-  background: linear-gradient(135deg, #e0d4ff, #aef2f2);
-  color: #fff;
-  text-align: center;
-  padding: 2rem 1rem;
-  overflow-x: hidden;
-}
-
-.title {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-  color: #000;
-  text-shadow: 0 0 10px #fff;
-}
-
-.age-counter {
-  font-size: 1.2rem;
-  color: #222;
-  background: rgba(255,255,255,0.2);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.profile-slider {
-  width: 100%;
-  overflow: hidden;
-  margin: 2rem 0;
-  position: relative;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  animation: slide 20s infinite linear;
-}
-
-.slider-track img {
-  width: 90%;
-  border-radius: 1rem;
-  margin: 0 auto;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-}
-
-@keyframes slide {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-100%); }
-  40% { transform: translateX(-200%); }
-  60% { transform: translateX(-300%); }
-  80% { transform: translateX(-200%); }
-  100% { transform: translateX(0); }
-}
-
-.quote-box {
-  font-size: 1rem;
-  color: #000;
-  background: rgba(255,255,255,0.4);
-  padding: 1rem;
-  margin-top: 2rem;
-  border-radius: 15px;
-  animation: fadeIn 2s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-.glow {
-  box-shadow: 0 0 10px #fff, 0 0 20px #bfb, 0 0 30px #9ff;
-}
-
-.share-btn {
-  margin-top: 1.5rem;
-  background: #000;
-  color: #0ff;
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 50px;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 0 10px #0ff;
-}
-
-.hacker-mode {
-  background: #000;
-  color: #0f0 !important;
-}
-
-audio {
-  display: none;
-}
-
-@media (min-width: 600px) {
-  body {
-    display: none;
-  }
-}
-
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #e0e7ff, #ccfbf1);
+      overflow-x: hidden;
+      color: #fff;
+      background-attachment: fixed;
+    }
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+    .main-heading {
+      font-size: 2rem;
+      color: #4f46e5;
+      text-shadow: 0 0 5px #7c3aed;
+      margin-bottom: 10px;
+    }
+    .live-age {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #06b6d4;
+      text-shadow: 0 0 2px #4ade80;
+    }
+    .quote-box {
+      font-size: 1rem;
+      margin: 15px auto;
+      max-width: 90%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(147, 197, 253, 0.5);
+    }
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      margin: 20px auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+    }
+    .slider img {
+      scroll-snap-align: center;
+      flex-shrink: 0;
+      width: 85%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(165, 180, 252, 0.8);
+      transition: transform 0.3s ease;
+    }
+    .slider img:hover {
+      transform: scale(1.05);
+    }
+    .share-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #7c3aed;
+    }
+    audio {
+      display: none;
+    }
+    .glow-aura {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: -1;
+      border-radius: 50%;
+      box-shadow: 0 0 50px 25px rgba(99, 102, 241, 0.3);
+    }
+    @media only screen and (min-width: 768px) {
+      body::before {
+        content: 'Mobile View Only';
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        background: black;
+        color: white;
+        padding: 20px;
+        z-index: 9999;
+      }
+      .container {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1 class="title">Legendary Birthday Vibes</h1>
-  <div class="age-counter" id="age">Loading age...</div>  <div class="profile-slider">
-    <div class="slider-track">
-      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
-      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
-      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
-      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
-    </div>
-  </div>  <div class="quote-box" id="quote">Initializing...</div>
-  <button class="share-btn" onclick="sharePage()">Share This ✨</button>
-  <audio id="bgMusic" autoplay loop>
-    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mpeg">
-  </audio>  <script>
-    // Age Calculation
-    const birth = new Date("2009-07-23T05:30:00+05:30");
-    const ageBox = document.getElementById("age");
-    setInterval(() => {
+  <div class="glow-aura"></div>
+  <div class="container">
+    <h1 class="main-heading">LEGENDARY MODE // ACTIVE</h1>
+    <div id="age" class="live-age">Calculating...</div><div class="quote-box" id="quoteBox">"Born to outgrow every limit."</div>
+
+<div class="slider">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="Image 1">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="Image 2">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="Image 3">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="Image 4">
+</div>
+
+<button class="share-btn" onclick="navigator.share ? navigator.share({title: 'HBD Legendary', url: location.href}) : alert('Use mobile browser to share!')">🚀 Share This</button>
+
+  </div><audio id="bgMusic" src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" autoplay loop></audio>
+
+  <script>
+    const birthDate = new Date('2009-07-23T05:30:00+05:30');
+    const ageElement = document.getElementById('age');
+    function updateAge() {
       const now = new Date();
-      let diff = now - birth;
-      let minutes = (diff / 60000).toFixed(3);
-      let years = Math.floor(minutes / 525600);
-      minutes %= 525600;
-      let days = Math.floor(minutes / 1440);
-      minutes %= 1440;
-      let hours = Math.floor(minutes / 60);
-      minutes = (minutes % 60).toFixed(3);
-      ageBox.textContent = `${years}y ${days}d ${hours}h ${minutes}m`;
-    }, 1000);
-
-    // Quote Changer
-    const quotes = [
-      "Every version of you breaks the previous one. That’s how legends evolve.",
-      "Not a king. Not a god. Just a new definition.",
-      "Your presence bends timelines. That’s power.",
-      "Legacy isn't inherited, it's constructed — brick by attitude.",
-      "No upgrades left. This is final form.",
-      "If time could speak, it would whisper your name."
-    ];
-    const quoteBox = document.getElementById("quote");
-    function changeQuote() {
-      quoteBox.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+      let diff = now - birthDate;
+      let mins = diff / 60000;
+      let years = Math.floor(mins / 525600);
+      mins %= 525600;
+      let days = Math.floor(mins / 1440);
+      mins %= 1440;
+      let hours = Math.floor(mins / 60);
+      mins = (mins % 60).toFixed(3);
+      ageElement.textContent = `${years}y ${days}d ${hours}h ${mins}m`;
     }
-    setInterval(changeQuote, 5000);
-    changeQuote();
+    setInterval(updateAge, 1000);
 
-    // Hacker Mode (Triple Tap)
+    const quotes = [
+      "Every version of you breaks the previous one.",
+      "Legacy isn’t written, it’s coded.",
+      "Upgrade completed. Next stage: UNSTOPPABLE.",
+      "You don't chase greatness. You compile it.",
+      "Born to outgrow every limit.",
+      "Vibes encrypted. Only real ones can decode."
+    ];
+    setInterval(() => {
+      const box = document.getElementById("quoteBox");
+      box.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }, 5000);
+
+    // Hacker Mode
     let tapCount = 0;
-    document.body.addEventListener("click", () => {
+    window.addEventListener("touchstart", () => {
       tapCount++;
-      if (tapCount === 3) {
-        document.body.classList.toggle("hacker-mode");
-        tapCount = 0;
+      if (tapCount >= 3) {
+        alert("🛠️ Hacker Mode Activated");
+        document.body.style.background = "black";
       }
       setTimeout(() => tapCount = 0, 1000);
     });
 
-    // Share Button
-    function sharePage() {
-      if (navigator.share) {
-        navigator.share({
-          title: "Nitin's Legendary Birthday",
-          text: "Check out this epic birthday surprise ✨",
-          url: window.location.href
-        });
-      } else {
-        alert("Sharing not supported on this device.");
-      }
-    }
-
-    // Music Fade on Scroll
+    // Scroll volume fade
     const music = document.getElementById("bgMusic");
-    window.addEventListener("scroll", () => {
-      let volume = Math.max(0, 1 - window.scrollY / 500);
-      music.volume = volume;
+    window.addEventListener('scroll', () => {
+      let y = window.scrollY;
+      music.volume = Math.max(0, 1 - y / 300);
     });
   </script></body>
 </html>
