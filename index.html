@@ -1,154 +1,172 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unique Birthday Tribute</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Happy Birthday Nitin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Major+Mono+Display&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --main-bg: #0e0e2c;
-      --accent: #9df9ef;
-      --secondary: #d3bfff;
-      --white: #ffffff;
-    }* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }body {
+  background: #0e0e10;
+  font-family: 'Orbitron', sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+  position: relative;
 }
 
-body {
-  background-color: var(--main-bg);
-  color: var(--white);
-  font-family: 'Roboto Mono', monospace;
-  overflow-x: hidden;
+::-webkit-scrollbar {
+  width: 0;
 }
 
 header {
-  padding: 20px;
   text-align: center;
-  font-size: 1.6rem;
-  color: var(--accent);
-  border-bottom: 1px solid var(--secondary);
+  padding: 2rem 1rem 1rem;
+  font-size: 2rem;
+  color: #aefeff;
+  text-shadow: 0 0 15px #aefeff;
+  font-family: 'Major Mono Display', monospace;
 }
 
-.container {
-  padding: 20px;
+.profile-pic {
+  display: block;
+  margin: 1rem auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #a67eff;
+  box-shadow: 0 0 20px #a67eff;
+  object-fit: cover;
 }
 
-.age-display {
-  font-size: 1.2rem;
-  color: var(--secondary);
-  margin-bottom: 20px;
+.message {
   text-align: center;
+  margin: 1rem auto;
+  padding: 0 1.5rem;
+  color: #d1d1ff;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-.quotes-box {
-  background: rgba(255, 255, 255, 0.05);
-  border-left: 4px solid var(--accent);
-  padding: 15px;
-  margin-bottom: 30px;
-  font-style: italic;
-  font-size: 1rem;
-  animation: flicker 2.5s infinite;
+.age-timer {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #fffaaf;
+  margin: 1rem auto;
+  animation: glow 2s infinite alternate;
 }
 
-@keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.75; }
+@keyframes glow {
+  from { text-shadow: 0 0 10px #aefeff; }
+  to { text-shadow: 0 0 20px #ff99ff; }
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 15px;
+  margin: 2rem auto;
+  padding: 1rem;
 }
 
 .gallery img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 0 15px var(--accent);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 130px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.4s ease-in-out;
+  box-shadow: 0 0 15px #aefeff;
 }
 
 .gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px var(--secondary);
+  transform: scale(1.1) rotate(1deg);
+}
+
+.quote-box {
+  text-align: center;
+  font-size: 1rem;
+  color: #c3f1ff;
+  margin: 2rem 1rem;
+  font-style: italic;
+  transition: opacity 0.5s ease-in-out;
 }
 
 audio {
   display: none;
 }
 
-.footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.8rem;
-  color: var(--secondary);
-}
-
-@media screen and (min-width: 600px) {
-  .gallery {
-    grid-template-columns: repeat(4, 1fr);
-  }
+/* Disable right click and shortcut keys */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
   </style>
-</head><body>
-  <header>
-    Respect. Loyalty. Code.
-  </header>  <div class="container">
-    <div class="age-display" id="age"></div><div class="quotes-box" id="quote"></div>
-
-<div class="gallery">
-  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
-  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
-  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
-  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
-</div>
-
-  </div><audio id="bgMusic" src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" autoplay loop></audio>
-
-  <div class="footer">
-    © Made with precision
-  </div>  <script>
-    const startDate = new Date("July 23, 2009 05:30:00");
-    const ageDisplay = document.getElementById("age");
-    const quotes = [
-      "Mastery isn't spoken. It's observed.",
-      "Moves are silent. Results are loud.",
-      "This isn't charm. It's calculation.",
-      "Focus. Flow. Finish.",
-      "Elevated minds don't need validation."
-    ];
+</head>
+<body oncontextmenu="return false" onkeydown="return false" onmousedown="return false">
+  <header>Happy Birthday Nitin</header>
+  <img src="https://i.ibb.co/BVZ325R4/HBD.png" class="profile-pic" alt="Nitin's Profile Picture">  <div class="message">
+    You are the spark that makes the dark bright. This is not just a wish—this is a tribute. Your journey ahead is yours to own, and this moment marks only the beginning of something massive.
+  </div>  <div class="age-timer" id="ageDisplay">Loading age...</div>  <div class="gallery">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
+  </div>  <div class="quote-box" id="quoteBox">Stay low, rise high. Watch more, speak less.</div>  <audio id="bgMusic" autoplay loop>
+    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mpeg">
+  </audio>  <script>
+    const birthDate = new Date("2009-07-23T05:30:00");
+    const ageDisplay = document.getElementById("ageDisplay");
 
     function updateAge() {
       const now = new Date();
-      let diff = now - startDate;
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-      diff -= years * (1000 * 60 * 60 * 24 * 365);
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      diff -= days * (1000 * 60 * 60 * 24);
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      diff -= hours * (1000 * 60 * 60);
-      const minutes = (diff / (1000 * 60)).toFixed(3);
-      ageDisplay.innerText = `Age: ${years}y ${days}d ${hours}h ${minutes}m`;
+      let diff = now - birthDate;
+      const mins = Math.floor(diff / 60000) % 60;
+      const hrs = Math.floor(diff / 3600000) % 24;
+      const days = Math.floor(diff / (24 * 3600000)) % 365;
+      const years = Math.floor(diff / (365 * 24 * 3600000));
+      ageDisplay.textContent = `${years}y ${days}d ${hrs}h ${mins}m`;
     }
 
-    function rotateQuotes() {
-      const quoteBox = document.getElementById("quote");
-      let i = 0;
-      setInterval(() => {
-        quoteBox.innerText = quotes[i % quotes.length];
-        i++;
-      }, 6000);
-    }
-
-    document.addEventListener("scroll", () => {
-      const music = document.getElementById("bgMusic");
-      const vol = 1 - window.scrollY / window.innerHeight;
-      music.volume = Math.max(0, Math.min(1, vol));
-    });
-
+    setInterval(updateAge, 1000);
     updateAge();
-    setInterval(updateAge, 60000);
-    rotateQuotes();
-  </script></body></html>
+
+    // Quote rotator
+    const quotes = [
+      "Move quiet. Build loud.",
+      "Real ones never speak, they act.",
+      "Not born to follow.",
+      "Eyes forward. Mind sharp.",
+      "Ruling isn’t spoken, it’s felt."
+    ];
+
+    let qIndex = 0;
+    const quoteBox = document.getElementById("quoteBox");
+
+    setInterval(() => {
+      qIndex = (qIndex + 1) % quotes.length;
+      quoteBox.style.opacity = 0;
+      setTimeout(() => {
+        quoteBox.textContent = quotes[qIndex];
+        quoteBox.style.opacity = 1;
+      }, 500);
+    }, 5000);
+
+    // Prevent inspect/console access
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script></body>
+</html>
