@@ -1,116 +1,167 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Nitin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }body {
-  background: linear-gradient(135deg, #c3e0e5, #e2d1f9);
-  color: #333;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nitin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, Great Vibes for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for gradients and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec); /* Lighter, modern gradient */
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header-gradient {
+            background: linear-gradient(45deg, #6a0572, #8e2de2); /* Deep purple to violet */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .gallery-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+        .gallery-item {
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            width: 90vw; /* Adjust for mobile view */
+            max-width: 300px; /* Max width for larger screens */
+        }
+        @media (min-width: 768px) {
+            .gallery-item {
+                width: 280px; /* Slightly larger on tablets */
+            }
+        }
+        @media (min-width: 1024px) {
+            .gallery-item {
+                width: 320px; /* Larger on desktops */
+            }
+        }
+        .message-box {
+            background-color: #e0f2f7; /* Light blue background for message */
+            border-left: 5px solid #00bcd4; /* Cyan border */
+        }
+        .glow-text {
+            text-shadow: 0 0 8px rgba(142, 45, 226, 0.6), 0 0 15px rgba(142, 45, 226, 0.4);
+        }
+    </style>
+</head>
+<body oncontextmenu="return false" onkeydown="return !(event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73));" class="flex flex-col items-center justify-between">
 
-header {
-  text-align: center;
-  padding: 4vh 2vw;
-}
+    <!-- Background Music -->
+    <audio id="birthdayAudio" autoplay loop>
+        <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
-header h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 3rem;
-  color: #613dc1;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
+    <!-- Header Section -->
+    <header class="w-full py-8 text-center bg-white shadow-lg rounded-b-3xl">
+        <h1 class="font-['Great_Vibes'] text-5xl md:text-6xl lg:text-7xl header-gradient font-extrabold tracking-wide">
+            Happy Birthday Nitin!
+        </h1>
+    </header>
 
-.profile {
-  display: flex;
-  justify-content: center;
-  margin: 3vh auto;
-}
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto p-4 md:p-8 flex flex-col items-center">
 
-.profile img {
-  width: 180px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 0 25px rgba(90, 0, 170, 0.6);
-  transition: transform 0.3s ease-in-out;
-}
+        <!-- Profile Section -->
+        <section class="profile my-8 card p-6 flex flex-col items-center">
+            <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture" class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full border-4 border-purple-500 shadow-xl transform transition-transform duration-300 hover:scale-105">
+            <div id="age" class="age-counter mt-6 text-2xl md:text-3xl font-semibold text-gray-800 glow-text">Loading age...</div>
+        </section>
 
-.profile img:hover {
-  transform: scale(1.05);
-}
+        <!-- Message Section -->
+        <section class="message w-full max-w-2xl my-8 p-6 message-box rounded-xl text-center text-gray-700 leading-relaxed text-lg md:text-xl">
+            <p>You are the kind of person who makes life brighter and hearts lighter. On your birthday, I want to thank you for simply being YOU. Stay as awesome and fearless as ever.</p>
+        </section>
 
-.age-counter {
-  text-align: center;
-  margin: 20px;
-  font-size: 1.4rem;
-  color: #444;
-}
+        <!-- Gallery Section -->
+        <section class="gallery w-full my-8">
+            <h2 class="text-center text-3xl md:text-4xl font-bold text-gray-800 mb-6 font-['Great_Vibes'] header-gradient">Memories Captured</h2>
+            <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 px-4">
+                <div class="gallery-item card p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1" class="w-full h-auto object-cover rounded-lg shadow-md">
+                </div>
+                <div class="gallery-item card p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2" class="w-full h-auto object-cover rounded-lg shadow-md">
+                </div>
+                <div class="gallery-item card p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3" class="w-full h-auto object-cover rounded-lg shadow-md">
+                </div>
+                <div class="gallery-item card p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md">
+                </div>
+            </div>
+        </section>
 
-.message {
-  text-align: center;
-  font-size: 1.1rem;
-  padding: 20px;
-  max-width: 90vw;
-  margin: auto;
-  color: #222;
-}
+    </main>
 
-.gallery {
-  display: flex;
-  overflow-x: auto;
-  padding: 20px 0;
-  gap: 15px;
-  justify-content: center;
-}
+    <!-- Footer Section -->
+    <footer class="w-full py-6 text-center bg-gray-100 text-gray-600 text-sm rounded-t-3xl shadow-inner mt-auto">
+        &copy; 2025 Birthday Surprise by Ayu. All rights reserved.
+    </footer>
 
-.gallery img {
-  height: 240px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+    <script>
+        // Function to update the age counter
+        function updateAge() {
+            const birth = new Date("2009-07-23T05:30:00"); // Nitin's birth date and time
+            const now = new Date(); // Current date and time
+            const diff = now - birth; // Difference in milliseconds
 
-audio {
-  display: none;
-}
+            // Calculate years, days, hours, and minutes
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const remaining = diff % (1000 * 60 * 60 * 24 * 365.25);
+            const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+            const remainingDays = remaining % (1000 * 60 * 60 * 24);
+            const hours = Math.floor(remainingDays / (1000 * 60 * 60));
+            const remainingHours = remainingDays % (1000 * 60 * 60);
+            const mins = Math.floor(remainingHours / (1000 * 60));
 
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #666;
-}
+            // Update the age display
+            document.getElementById("age").innerText = `${years} yrs ${days} days ${hours} hrs ${mins} mins`;
+        }
 
-  </style>
-</head><body oncontextmenu="return false" onkeydown="return !(event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73));">
-  <audio autoplay loop>
-    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mp3">
-  </audio>  <header>
-    <h1>Happy Birthday Nitin</h1>
-  </header>  <div class="profile">
-    <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture">
-  </div>  <div class="age-counter" id="age">Loading age...</div>  <div class="message">
-    <p>You are the kind of person who makes life brighter and hearts lighter. On your birthday, I want to thank you for simply being YOU. Stay as awesome and fearless as ever.</p>
-  </div>  <div class="gallery">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
-  </div>  <footer>© 2025 Birthday Surprise by Ayu</footer>  <script>
-    function updateAge() {
-      const birth = new Date("2009-07-23T05:30:00");
-      const now = new Date();
-      const diff = now - birth;
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
-      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      document.getElementById("age").innerText = `${years} yrs ${days} days ${mins} mins`;
-    }
-    updateAge();
-    setInterval(updateAge, 60000);
-  </script></body></html>
+        // Initial call to update age
+        updateAge();
+        // Update age every minute
+        setInterval(updateAge, 60000);
+
+        // Optional: Play audio on user interaction for better browser compatibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('birthdayAudio');
+            // Attempt to play audio on first user interaction
+            document.body.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().catch(e => console.log("Audio play failed:", e));
+                }
+            }, { once: true });
+        });
+
+        // Disable right-click and specific key combinations for development tools
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.keyCode === 123 || (event.ctrlKey && event.shiftKey && event.keyCode === 73)) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
+
