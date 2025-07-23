@@ -1,139 +1,116 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Nitin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      user-select: none;
+      font-family: 'Roboto', sans-serif;
     }body {
-  background: linear-gradient(135deg, #d6ccff, #ccf5f5);
-  color: white;
-  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #c3e0e5, #e2d1f9);
+  color: #333;
   overflow-x: hidden;
 }
 
-.no-select, img {
-  -webkit-user-drag: none;
-  user-drag: none;
-  pointer-events: none;
-}
-
-.main-container {
-  padding: 2rem 1rem;
+header {
   text-align: center;
+  padding: 4vh 2vw;
 }
 
-.glow-profile {
-  width: 160px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(200, 255, 255, 0.8);
-  margin-bottom: 1rem;
-}
-
-h1 {
+header h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 2.5rem;
-  color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 10px #a0f0ff;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  color: #613dc1;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.message {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: #fff;
+.profile {
+  display: flex;
+  justify-content: center;
+  margin: 3vh auto;
+}
+
+.profile img {
+  width: 180px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(90, 0, 170, 0.6);
+  transition: transform 0.3s ease-in-out;
+}
+
+.profile img:hover {
+  transform: scale(1.05);
 }
 
 .age-counter {
-  font-size: 1rem;
-  color: #fffc;
-  margin-bottom: 2rem;
+  text-align: center;
+  margin: 20px;
+  font-size: 1.4rem;
+  color: #444;
+}
+
+.message {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 20px;
+  max-width: 90vw;
+  margin: auto;
+  color: #222;
 }
 
 .gallery {
   display: flex;
   overflow-x: auto;
-  gap: 1rem;
-  padding: 0 1rem;
-  scroll-snap-type: x mandatory;
+  padding: 20px 0;
+  gap: 15px;
+  justify-content: center;
 }
 
 .gallery img {
-  flex-shrink: 0;
-  height: 280px;
-  border-radius: 12px;
-  object-fit: cover;
-  scroll-snap-align: center;
-  transition: transform 0.3s ease;
+  height: 240px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.gallery img:hover {
-  transform: scale(1.05);
+audio {
+  display: none;
 }
 
-.motu-btn {
-  margin-top: 2rem;
-  padding: 1rem 2rem;
-  background: #0ff;
-  border: none;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #0ff;
-  animation: pulsate 2s infinite;
-}
-
-@keyframes pulsate {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* Disable right-click and inspect */
-body {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #666;
 }
 
   </style>
-</head>
-<body oncontextmenu="return false" onkeydown="return !(event.keyCode==123 || (event.ctrlKey && event.shiftKey && event.keyCode==73))">
-  <div class="main-container">
-    <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture" class="glow-profile">
+</head><body oncontextmenu="return false" onkeydown="return !(event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73));">
+  <audio autoplay loop>
+    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mp3">
+  </audio>  <header>
     <h1>Happy Birthday Nitin</h1>
-    <div class="message">
-      You make the world brighter just by being in it. Here’s to your special day filled with love, light, and endless joy.
-    </div>
-    <div class="age-counter" id="ageCounter"></div>
-    <div class="gallery">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
-    </div>
-    <button class="motu-btn">Motu Sher</button>
-  </div>  <audio autoplay loop>
-    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mpeg">
-  </audio>  <script>
-    function updateAgeCounter() {
-      const birth = new Date("2009-07-23T05:30:00+05:30");
+  </header>  <div class="profile">
+    <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture">
+  </div>  <div class="age-counter" id="age">Loading age...</div>  <div class="message">
+    <p>You are the kind of person who makes life brighter and hearts lighter. On your birthday, I want to thank you for simply being YOU. Stay as awesome and fearless as ever.</p>
+  </div>  <div class="gallery">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
+    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
+  </div>  <footer>© 2025 Birthday Surprise by Ayu</footer>  <script>
+    function updateAge() {
+      const birth = new Date("2009-07-23T05:30:00");
       const now = new Date();
       const diff = now - birth;
-      const minutes = diff / (1000 * 60);
-      const years = Math.floor(minutes / (60 * 24 * 365));
-      const days = Math.floor((minutes - years * 525600) / (60 * 24));
-      const remainingMinutes = (minutes % 1440).toFixed(2);
-      document.getElementById("ageCounter").textContent = `${years}Y ${days}D ${remainingMinutes}M`;
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("age").innerText = `${years} yrs ${days} days ${mins} mins`;
     }
-    setInterval(updateAgeCounter, 1000);
-    updateAgeCounter();
-  </script></body>
-</html>
+    updateAge();
+    setInterval(updateAge, 60000);
+  </script></body></html>
