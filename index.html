@@ -1,147 +1,197 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Nitin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Sacramento&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: linear-gradient(135deg, #c8e7f5, #e0ccff);
-      font-family: 'Share Tech Mono', monospace;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    .container {
-      padding: 2rem;
-      text-align: center;
-    }
-    h1 {
-      font-family: 'Sacramento', cursive;
-      font-size: 3rem;
-      color: #ffffff;
-      text-shadow: 0 0 10px #a0faff, 0 0 20px #cdbfff;
-      margin-bottom: 1rem;
-    }
-    .profile-img {
-      width: 180px;
-      height: auto;
-      margin: 1rem auto;
-      display: block;
-      filter: drop-shadow(0 0 12px #a0faff);
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .birthday-message {
-      font-size: 1.1rem;
-      color: #2e2e2e;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 1.2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
-      max-width: 600px;
-      margin: 1rem auto;
-    }
-    .age-counter {
-      font-size: 1.1rem;
-      color: #000;
-      background: #fff;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      display: inline-block;
-      margin-bottom: 1rem;
-      box-shadow: 0 0 10px #a0faff;
-    }
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .gallery img {
-      height: 200px;
-      border-radius: 12px;
-      box-shadow: 0 0 8px #ccc;
-      transition: transform 0.3s ease;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #00f7ff;
-    }
-    .footer-btn {
-      margin-top: 2rem;
-      padding: 0.8rem 1.6rem;
-      background: #000;
-      color: #0ff;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0px #0ff; }
-      50% { box-shadow: 0 0 15px #0ff; }
-      100% { box-shadow: 0 0 0px #0ff; }
-    }
-    /* Anti-inspect and anti-right click */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    html, body {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nitin - System Log</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, Great Vibes for headings, VT323 for monospace/terminal feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the cyberpunk/tech theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d1a; /* Very dark blue-black */
+            background-image:
+                radial-gradient(circle at center, rgba(30, 0, 50, 0.3) 0%, transparent 70%),
+                repeating-linear-gradient(0deg, #1a002a 0px, #1a002a 1px, transparent 1px, transparent 20px),
+                repeating-linear-gradient(90deg, #1a002a 0px, #1a002a 1px, transparent 1px, transparent 20px);
+            color: #e0e0e0; /* Light gray for general text */
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Neon glow effect for headings and key text */
+        .neon-glow {
+            text-shadow:
+                0 0 5px #8e2de2, /* Purple glow */
+                0 0 10px #8e2de2,
+                0 0 20px #8e2de2,
+                0 0 40px #6a0572, /* Deeper purple */
+                0 0 80px #6a0572;
+        }
+
+        /* Card styling for a tech panel look */
+        .tech-panel {
+            background-color: rgba(25, 25, 40, 0.8); /* Slightly transparent dark panel */
+            border: 1px solid #4a005a; /* Purple border */
+            border-radius: 0.75rem; /* Slightly less rounded for a sharper tech look */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(142, 45, 226, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .tech-panel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(142, 45, 226, 0.4);
+        }
+
+        /* Blinking cursor for the age counter */
+        .blinking-cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Gallery specific styling */
+        .gallery-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        .gallery-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+        }
+        .gallery-item {
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            width: 90vw;
+            max-width: 300px;
+            border: 1px solid #3a004a; /* Darker purple border */
+        }
+        .gallery-item img {
+            filter: brightness(0.9) contrast(1.1); /* Slightly desaturate/contrast for tech feel */
+        }
+        .gallery-item:hover img {
+            filter: brightness(1) contrast(1.2);
+            transform: scale(1.02);
+        }
+
+        /* Profile image border glow */
+        .profile-img-glow {
+            border: 4px solid #8e2de2; /* Purple border */
+            box-shadow: 0 0 15px #8e2de2, 0 0 30px #6a0572; /* Inner and outer glow */
+        }
+    </style>
 </head>
-<body oncontextmenu="return false" onkeydown="return false;">
-  <div class="container">
-    <h1>Happy Birthday Nitin</h1>
-    <img class="profile-img" src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile">
-    <div class="age-counter" id="ageCounter">Loading age...</div>
-    <div class="birthday-message">
-      To my irreplaceable brother,<br><br>
-      You've been the firewall to my bugs, the patch to my crashes, and the root to my OS.<br>
-      Your presence in my life is like secure code—rare, protected, and priceless.<br><br>
-      May your year ahead be upgraded with infinite love, zero errors, and full-stack happiness.
-    </div>
-    <div class="gallery">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="pic1">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="pic2">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="pic3">
-      <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="pic4">
-    </div>
-    <button class="footer-btn">Motu Sher 🦁</button>
-  </div>  <audio autoplay loop>
-    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mpeg">
-  </audio>  <script>
-    const birthDate = new Date("2009-07-23T05:30:00+05:30");
-    function updateAge() {
-      const now = new Date();
-      let diff = now - birthDate;
-      const mins = Math.floor(diff / (1000 * 60)) % 60;
-      const hrs = Math.floor(diff / (1000 * 60 * 60)) % 24;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 365;
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-      document.getElementById("ageCounter").textContent = `${years}y ${days}d ${hrs}h ${mins}m`;
-    }
-    updateAge();
-    setInterval(updateAge, 60000);
-  </script></body>
+<body oncontextmenu="return false" onkeydown="return !(event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73));" class="flex flex-col items-center justify-between">
+
+    <!-- Background Music -->
+    <audio id="birthdayAudio" autoplay loop>
+        <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Header Section -->
+    <header class="w-full py-8 text-center bg-transparent rounded-b-3xl">
+        <h1 class="font-['Great_Vibes'] text-6xl md:text-7xl lg:text-8xl text-purple-400 font-extrabold tracking-wide neon-glow">
+            Happy Birthday Nitin!
+        </h1>
+        <p class="text-sm md:text-base text-gray-400 mt-2 font-['VT323']">
+            // Initiating birthday protocol... Access granted.
+        </p>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto p-4 md:p-8 flex flex-col items-center">
+
+        <!-- Profile Section -->
+        <section class="profile my-8 tech-panel p-6 flex flex-col items-center">
+            <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture" class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full transition-transform duration-300 hover:scale-105 profile-img-glow">
+            <div id="age" class="age-counter mt-6 text-2xl md:text-3xl font-['VT323'] text-green-400 neon-glow blinking-cursor">
+                System Uptime: Calculating...
+            </div>
+        </section>
+
+        <!-- Message Section -->
+        <section class="message w-full max-w-2xl my-8 p-6 tech-panel rounded-xl text-center text-gray-300 leading-relaxed text-lg md:text-xl border-l-4 border-green-500">
+            <p>// Log Entry: Subject Nitin. You are the architect of your digital destiny, a true enthusiast navigating the intricate networks of knowledge. On this node's activation day, we acknowledge your skill and unwavering spirit. Continue to decrypt life's challenges with the same precision and fearlessness. Happy Birthday, Hacker. // End Log.</p>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery w-full my-8">
+            <h2 class="text-center text-3xl md:text-4xl font-bold text-purple-400 mb-6 font-['Great_Vibes'] neon-glow">Encrypted Memories</h2>
+            <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 px-4 justify-center">
+                <div class="gallery-item tech-panel p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                </div>
+                <div class="gallery-item tech-panel p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                </div>
+                <div class="gallery-item tech-panel p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                </div>
+                <div class="gallery-item tech-panel p-3">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full py-6 text-center bg-transparent text-gray-500 text-xs rounded-t-3xl shadow-inner mt-auto font-['VT323']">
+        // © 2025 Birthday Protocol Executed by Ayu. All rights reserved. //
+    </footer>
+
+    <script>
+        // Function to update the age counter, now formatted as "System Uptime"
+        function updateAge() {
+            const birth = new Date("2009-07-23T05:30:00"); // Nitin's birth date and time
+            const now = new Date(); // Current date and time
+            const diff = now - birth; // Difference in milliseconds
+
+            // Calculate years, days, hours, and minutes
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const remaining = diff % (1000 * 60 * 60 * 24 * 365.25);
+            const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+            const remainingDays = remaining % (1000 * 60 * 60 * 24);
+            const hours = Math.floor(remainingDays / (1000 * 60 * 60));
+            const remainingHours = remainingDays % (1000 * 60 * 60);
+            const mins = Math.floor(remainingHours / (1000 * 60));
+
+            // Update the age display with a "System Uptime" format
+            document.getElementById("age").innerHTML = `System Uptime: ${years} yrs ${days} days ${hours} hrs ${mins} mins<span class="blinking-cursor"></span>`;
+        }
+
+        // Initial call to update age
+        updateAge();
+        // Update age every minute
+        setInterval(updateAge, 60000);
+
+        // Optional: Play audio on user interaction for better browser compatibility
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('birthdayAudio');
+            // Attempt to play audio on first user interaction
+            document.body.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().catch(e => console.log("Audio play failed:", e));
+                }
+            }, { once: true });
+        });
+
+        // Disable right-click and specific key combinations for development tools
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.keyCode === 123 || (event.ctrlKey && event.shiftKey && event.keyCode === 73)) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
 </html>
+
