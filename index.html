@@ -1,172 +1,136 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Nitin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Major+Mono+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      user-select: none;
-    }body {
-  background: #0e0e10;
-  font-family: 'Orbitron', sans-serif;
-  color: #ffffff;
-  overflow-x: hidden;
-  position: relative;
-}
-
-::-webkit-scrollbar {
-  width: 0;
-}
-
-header {
-  text-align: center;
-  padding: 2rem 1rem 1rem;
-  font-size: 2rem;
-  color: #aefeff;
-  text-shadow: 0 0 15px #aefeff;
-  font-family: 'Major Mono Display', monospace;
-}
-
-.profile-pic {
-  display: block;
-  margin: 1rem auto;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 4px solid #a67eff;
-  box-shadow: 0 0 20px #a67eff;
-  object-fit: cover;
-}
-
-.message {
-  text-align: center;
-  margin: 1rem auto;
-  padding: 0 1.5rem;
-  color: #d1d1ff;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.age-timer {
-  text-align: center;
-  font-size: 1.3rem;
-  color: #fffaaf;
-  margin: 1rem auto;
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px #aefeff; }
-  to { text-shadow: 0 0 20px #ff99ff; }
-}
-
-.gallery {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-.gallery img {
-  width: 130px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-  transition: transform 0.4s ease-in-out;
-  box-shadow: 0 0 15px #aefeff;
-}
-
-.gallery img:hover {
-  transform: scale(1.1) rotate(1deg);
-}
-
-.quote-box {
-  text-align: center;
-  font-size: 1rem;
-  color: #c3f1ff;
-  margin: 2rem 1rem;
-  font-style: italic;
-  transition: opacity 0.5s ease-in-out;
-}
-
-audio {
-  display: none;
-}
-
-/* Disable right click and shortcut keys */
-body {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
+    }
+    body {
+      background: linear-gradient(to bottom right, #d6ccff, #c5f5f5);
+      color: #333;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+    }
+    .container {
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #6a00ff;
+      text-shadow: 0 0 8px rgba(106, 0, 255, 0.5);
+    }
+    .profile {
+      margin-top: 20px;
+    }
+    .profile img {
+      width: 180px;
+      height: auto;
+      box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    }
+    .age {
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: #006a6a;
+    }
+    .quotes {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #222;
+      padding: 0 10px;
+      min-height: 40px;
+    }
+    .gallery {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    audio {
+      display: none;
+    }
+    @media only screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
-<body oncontextmenu="return false" onkeydown="return false" onmousedown="return false">
-  <header>Happy Birthday Nitin</header>
-  <img src="https://i.ibb.co/BVZ325R4/HBD.png" class="profile-pic" alt="Nitin's Profile Picture">  <div class="message">
-    You are the spark that makes the dark bright. This is not just a wish—this is a tribute. Your journey ahead is yours to own, and this moment marks only the beginning of something massive.
-  </div>  <div class="age-timer" id="ageDisplay">Loading age...</div>  <div class="gallery">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
-    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
-  </div>  <div class="quote-box" id="quoteBox">Stay low, rise high. Watch more, speak less.</div>  <audio id="bgMusic" autoplay loop>
+<body>
+  <div class="container">
+    <h1>Happy Birthday Nitin</h1><div class="profile">
+  <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Nitin">
+</div>
+
+<div class="age" id="age">Loading age...</div>
+
+<div class="quotes" id="quotes"></div>
+
+<div class="gallery">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
+  <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
+</div>
+
+  </div>  <audio autoplay loop id="bgMusic">
     <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mpeg">
   </audio>  <script>
-    const birthDate = new Date("2009-07-23T05:30:00");
-    const ageDisplay = document.getElementById("ageDisplay");
-
-    function updateAge() {
-      const now = new Date();
-      let diff = now - birthDate;
-      const mins = Math.floor(diff / 60000) % 60;
-      const hrs = Math.floor(diff / 3600000) % 24;
-      const days = Math.floor(diff / (24 * 3600000)) % 365;
-      const years = Math.floor(diff / (365 * 24 * 3600000));
-      ageDisplay.textContent = `${years}y ${days}d ${hrs}h ${mins}m`;
-    }
-
-    setInterval(updateAge, 1000);
-    updateAge();
-
-    // Quote rotator
-    const quotes = [
-      "Move quiet. Build loud.",
-      "Real ones never speak, they act.",
-      "Not born to follow.",
-      "Eyes forward. Mind sharp.",
-      "Ruling isn’t spoken, it’s felt."
-    ];
-
-    let qIndex = 0;
-    const quoteBox = document.getElementById("quoteBox");
-
-    setInterval(() => {
-      qIndex = (qIndex + 1) % quotes.length;
-      quoteBox.style.opacity = 0;
-      setTimeout(() => {
-        quoteBox.textContent = quotes[qIndex];
-        quoteBox.style.opacity = 1;
-      }, 500);
-    }, 5000);
-
-    // Prevent inspect/console access
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
-        e.preventDefault();
+    // Disable inspect
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.onkeydown = function(e) {
+      if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
         return false;
       }
-    });
+    }
+
+    // Age counter
+    function updateAge() {
+      const birth = new Date('2009-07-23T05:30:00+05:30');
+      const now = new Date();
+      const diff = now - birth;
+
+      const years = Math.floor(diff / (365.25 * 24 * 60 * 60 * 1000));
+      const days = Math.floor((diff % (365.25 * 24 * 60 * 60 * 1000)) / (24 * 60 * 60 * 1000));
+      const hours = Math.floor((diff % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+      const minutes = Math.floor((diff % (60 * 60 * 1000)) / (60 * 1000));
+
+      document.getElementById('age').innerText = `${years}y ${days}d ${hours}h ${minutes}m`;
+    }
+    setInterval(updateAge, 60000);
+    updateAge();
+
+    // Quotes rotator
+    const messages = [
+      "Another year wiser, sharper, bolder.",
+      "Keep building, keep breaking limits.",
+      "Today, we celebrate the architect of calm chaos.",
+      "No label. Just presence. Happy Birthday!"
+    ];
+    let i = 0;
+    function showQuote() {
+      document.getElementById("quotes").innerText = messages[i % messages.length];
+      i++;
+    }
+    setInterval(showQuote, 5000);
+    showQuote();
   </script></body>
 </html>
