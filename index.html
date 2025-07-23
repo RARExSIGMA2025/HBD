@@ -162,6 +162,63 @@
             pointer-events: auto;
             transition: opacity 1s ease-in;
         }
+
+        /* Password input and message box styling */
+        .password-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(25, 25, 40, 0.9);
+            border: 1px solid #4a005a;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        .password-input {
+            background-color: #1a1a2e;
+            border: 1px solid #6a0572;
+            color: #00ff00;
+            font-family: 'VT323', monospace;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .password-input:focus {
+            border-color: #00ff00;
+            box-shadow: inset 0 0 12px rgba(0, 255, 0, 0.5), 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+        .unlock-button {
+            background-color: #6a0572;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(106, 5, 114, 0.5);
+        }
+        .unlock-button:hover {
+            background-color: #8e2de2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 45, 226, 0.6);
+        }
+        .password-message {
+            margin-top: 1rem;
+            font-family: 'VT323', monospace;
+            color: #ff0000; /* Red for error */
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .password-message.success {
+            color: #00ff00; /* Green for success */
+        }
     </style>
 </head>
 <body oncontextmenu="return false" onkeydown="return !(event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73));" class="flex flex-col items-center justify-between">
@@ -222,10 +279,18 @@
     — From someone who never forgets the real ones. // End Log.</p>
             </section>
 
-            <!-- Gallery Section -->
+            <!-- Gallery Section with Password Lock -->
             <section class="gallery w-full my-8">
                 <h2 class="text-center text-3xl md:text-4xl font-bold text-purple-400 mb-6 font-['Great_Vibes'] neon-glow">Encrypted Memories</h2>
-                <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4">
+
+                <div id="password-lock" class="password-container">
+                    <p class="text-gray-300 mb-4 font-['VT323']">// Access Restricted: Please enter decryption key //</p>
+                    <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+                    <button id="unlock-button" class="unlock-button">Unlock Protocol</button>
+                    <p id="password-message" class="password-message"></p>
+                </div>
+
+                <div id="gallery-content" class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 hidden">
                     <!-- Rearranged images: HBD4, HBD3, HBD1, HBD2 -->
                     <div class="gallery-item tech-panel p-3">
                         <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
@@ -296,7 +361,6 @@
             // Display line 1
             setTimeout(() => {
                 bootLine1.textContent = lines[0];
-                // No specific width needed, overflow:hidden and white-space:pre handle typing
             }, delay);
 
             // Display line 2 after line 1 finishes typing
@@ -330,11 +394,47 @@
             }, delay + 1000); // 1 second for fade-out transition
         }
 
-        // Start boot animation when DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', initBootAnimation);
-
-        // Optional: Play audio on user interaction for better browser compatibility
+        // Password lock logic
         document.addEventListener('DOMContentLoaded', () => {
+            const passwordInput = document.getElementById('password-input');
+            const unlockButton = document.getElementById('unlock-button');
+            const passwordMessage = document.getElementById('password-message');
+            const galleryContent = document.getElementById('gallery-content');
+            const passwordLock = document.getElementById('password-lock');
+
+            const correctPassword = "1234"; // The correct password
+
+            unlockButton.addEventListener('click', () => {
+                if (passwordInput.value === correctPassword) {
+                    passwordMessage.textContent = "// Access Granted. Decrypting memories... //";
+                    passwordMessage.classList.add('success');
+                    passwordInput.style.borderColor = '#00ff00'; // Green border on success
+                    passwordInput.style.boxShadow = 'inset 0 0 12px rgba(0, 255, 0, 0.5)';
+
+                    setTimeout(() => {
+                        passwordLock.style.display = 'none'; // Hide the password input
+                        galleryContent.classList.remove('hidden'); // Show the gallery
+                    }, 1000); // Delay before showing gallery for effect
+                } else {
+                    passwordMessage.textContent = "// Decryption Failed: Invalid key. //";
+                    passwordMessage.classList.remove('success');
+                    passwordInput.style.borderColor = '#ff0000'; // Red border on error
+                    passwordInput.style.boxShadow = 'inset 0 0 12px rgba(255, 0, 0, 0.5)';
+                    passwordInput.value = ''; // Clear input on failure
+                }
+            });
+
+            // Allow pressing Enter to unlock
+            passwordInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    unlockButton.click(); // Simulate button click
+                }
+            });
+
+            // Start boot animation when DOM is fully loaded
+            initBootAnimation();
+
+            // Optional: Play audio on user interaction for better browser compatibility
             const audio = document.getElementById('birthdayAudio');
             // Attempt to play audio on first user interaction
             document.body.addEventListener('click', () => {
