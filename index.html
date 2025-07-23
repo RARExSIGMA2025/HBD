@@ -1,526 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Nitin!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles for animations and gradients */
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); /* Dark, futuristic gradient */
-            color: #e2e8f0; /* Light grey text for contrast */
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            position: relative; /* For background overlay */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legendary Birthday | Nitin</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
 
-        /* Sci-Fi Brain Waves Background Overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(99, 179, 237, 0.1) 0%, transparent 70%);
-            animation: pulseBackground 20s infinite alternate ease-in-out;
-            z-index: -1; /* Behind content */
-            pointer-events: none; /* Allow clicks through */
-        }
+body {
+  background: linear-gradient(135deg, #e0d4ff, #aef2f2);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+}
 
-        @keyframes pulseBackground {
-            0% { transform: scale(1); opacity: 0.1; }
-            50% { transform: scale(1.2); opacity: 0.2; }
-            100% { transform: scale(1); opacity: 0.1; }
-        }
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+  text-shadow: 0 0 10px #fff;
+}
 
-        /* Subtle background animation for existing gradient */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+.age-counter {
+  font-size: 1.2rem;
+  color: #222;
+  background: rgba(255,255,255,0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
 
-        body.animated-bg {
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-        }
+.profile-slider {
+  width: 100%;
+  overflow: hidden;
+  margin: 2rem 0;
+  position: relative;
+}
 
-        /* Fade-in animation for sections */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  animation: slide 20s infinite linear;
+}
 
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.slider-track img {
+  width: 90%;
+  border-radius: 1rem;
+  margin: 0 auto;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
 
-        /* Profile image animation */
-        .profile-img-container {
-            transition: transform 0.5s ease-in-out;
-            pointer-events: none; /* Prevent right-click/download */
-        }
+@keyframes slide {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-100%); }
+  40% { transform: translateX(-200%); }
+  60% { transform: translateX(-300%); }
+  80% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
 
-        .profile-img-container:hover {
-            transform: scale(1.05);
-        }
+.quote-box {
+  font-size: 1rem;
+  color: #000;
+  background: rgba(255,255,255,0.4);
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 15px;
+  animation: fadeIn 2s ease-in-out;
+}
 
-        /* Age display styling */
-        #age-display {
-            font-family: 'Orbitron', sans-serif; /* Futuristic font for numbers */
-            font-size: 2.5rem; /* Large and prominent */
-            color: #63b3ed; /* Blueish glow */
-            text-shadow: 0 0 15px rgba(99, 179, 237, 0.7);
-            letter-spacing: 2px;
-        }
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
 
-        /* Responsive adjustments for age display */
-        @media (max-width: 768px) {
-            #age-display {
-                font-size: 1.8rem;
-            }
-        }
+.glow {
+  box-shadow: 0 0 10px #fff, 0 0 20px #bfb, 0 0 30px #9ff;
+}
 
-        /* Card styling for general sections */
-        .card {
-            background-color: rgba(45, 55, 72, 0.7); /* Slightly transparent dark background */
-            backdrop-filter: blur(5px); /* Frosted glass effect */
-            border: 1px solid rgba(74, 85, 104, 0.5);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
+.share-btn {
+  margin-top: 1.5rem;
+  background: #000;
+  color: #0ff;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #0ff;
+}
 
-        .card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-        }
+.hacker-mode {
+  background: #000;
+  color: #0f0 !important;
+}
 
-        .video-placeholder {
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #a0aec0;
-            border: 2px dashed #4a5568;
-        }
+audio {
+  display: none;
+}
 
-        /* Typewriter and Glitch Effects for Quotes */
-        .quote-container {
-            font-family: 'Share Tech Mono', monospace; /* Hacking/typewriter font */
-            color: #00ff00; /* Green text for terminal feel */
-            white-space: nowrap; /* Keep text on one line for typing effect */
-            overflow: hidden; /* Hide overflowing text */
-            border-right: 3px solid transparent; /* Blinking cursor */
-            animation: blink-caret .75s step-end infinite;
-            width: 0; /* Start with no width for typing effect */
-            transition: width 0.1s steps(40, end); /* Adjust steps for typing speed */
-            opacity: 0; /* Start hidden for fade-in */
-            transform: translateY(10px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out, width 3s steps(40, end);
-        }
+@media (min-width: 600px) {
+  body {
+    display: none;
+  }
+}
 
-        .quote-container.typing {
-            opacity: 1;
-            transform: translateY(0);
-            width: 100%; /* Expand width to reveal text */
-        }
-
-        /* Glitch effect */
-        .glitch {
-            position: relative;
-            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
-            animation-iteration-count: 1; /* Only play once on entry */
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-        }
-
-        .glitch::before {
-            left: -2px;
-            text-shadow: 1px 0 #ff00c1;
-            clip: rect(44px, 450px, 56px, 0);
-        }
-
-        .glitch::after {
-            left: 2px;
-            text-shadow: -1px 0 #00ffc1;
-            clip: rect(85px, 450px, 100px, 0);
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: translate(0);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-            }
-            60% {
-                transform: translate(2px, 2px);
-            }
-            80% {
-                transform: translate(2px, -2px);
-            }
-            100% {
-                transform: translate(0);
-            }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #00ff00; } /* Green cursor */
-        }
-
-        /* Adjustments for quote container to allow text to wrap after typing */
-        .quote-container.typed {
-            white-space: normal;
-            border-right: none; /* Remove cursor after typing */
-            width: auto; /* Allow width to be determined by content */
-        }
-
-        /* Image Collage Specific Styles */
-        .image-collage-container {
-            position: relative;
-            width: 100%;
-            min-height: 550px; /* Adjust height as needed for collage layout */
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .collage-item {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.1); /* Subtle background for the "paper" */
-            padding: 0.5rem; /* Padding to simulate torn edges */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, z-index 0.1s;
-            cursor: default; /* Prevent pointer changes */
-            user-select: none; /* Prevent text selection */
-            pointer-events: none; /* Disable interaction with the item itself */
-        }
-
-        .collage-item:hover {
-            transform: scale(1.03) rotate(var(--rotation, 0deg)) translateY(-5px); /* Lift and slightly zoom on hover */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-            z-index: 10; /* Bring to front on hover */
-        }
-
-        .collage-item img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 0.25rem; /* Slightly rounded corners for the image itself */
-            pointer-events: none; /* Crucial for download prevention */
-            user-select: none;
-        }
-
-        /* Specific positioning and rotation for each image */
-        .collage-item:nth-child(1) { /* HBD1.jpg */
-            width: 200px; height: 200px;
-            top: 5%; left: 10%;
-            transform: rotate(-8deg);
-            --rotation: -8deg;
-            z-index: 2;
-        }
-        .collage-item:nth-child(2) { /* HBD2.jpg */
-            width: 220px; height: 180px;
-            top: 15%; right: 15%;
-            transform: rotate(12deg);
-            --rotation: 12deg;
-            z-index: 3;
-        }
-        .collage-item:nth-child(3) { /* HBD3.jpg */
-            width: 250px; height: 200px;
-            bottom: 10%; left: 5%;
-            transform: rotate(3deg);
-            --rotation: 3deg;
-            z-index: 4;
-        }
-        .collage-item:nth-child(4) { /* HBD4.jpg */
-            width: 230px; height: 250px;
-            bottom: 5%; right: 10%;
-            transform: rotate(-10deg);
-            --rotation: -10deg;
-            z-index: 5;
-        }
-
-        /* Responsive adjustments for collage items */
-        @media (max-width: 768px) {
-            .image-collage-container {
-                min-height: 700px; /* Adjust height for mobile stacking */
-            }
-            .collage-item {
-                position: relative; /* Stack items on mobile */
-                width: 80%; /* Make them wider */
-                height: auto; /* Auto height */
-                margin: 1rem auto; /* Center and add margin */
-                transform: none !important; /* Remove rotations on mobile */
-                --rotation: 0deg;
-                top: auto !important;
-                left: auto !important;
-                right: auto !important;
-                bottom: auto !important;
-                z-index: auto !important;
-                pointer-events: auto; /* Re-enable pointer events for mobile if needed, but still prevent download */
-                oncontextmenu="return false;" draggable="false";
-            }
-            .collage-item img {
-                height: 200px; /* Fixed height for consistency on mobile */
-            }
-        }
-
-        /* Happy Birthday Overlay Text */
-        .hbd-overlay-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-5deg); /* Center and rotate */
-            font-size: 3rem; /* Large text */
-            font-weight: bold;
-            text-align: center;
-            color: transparent;
-            background-clip: text;
-            background-image: linear-gradient(to right, #a78bfa, #f472b6, #f87171); /* Gradient color */
-            opacity: 0.8;
-            font-family: 'Orbitron', sans-serif;
-            z-index: 6; /* Ensure it's above some images */
-            pointer-events: none; /* Allow clicks to pass through */
-        }
-
-        @media (max-width: 768px) {
-            .hbd-overlay-text {
-                font-size: 2rem;
-                transform: translate(-50%, -50%) rotate(-3deg);
-            }
-        }
-    </style>
+  </style>
 </head>
-<body class="animated-bg">
-    <div class="min-h-screen flex flex-col items-center justify-center p-4">
-
-        <!-- Header Section -->
-        <header class="text-center mb-12 fade-in">
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 font-orbitron">
-                Happy Birthday, Nitin!
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-400">
-                Celebrating your journey, looking forward to your bright future.
-            </p>
-        </header>
-
-        <!-- Profile Image Section -->
-        <section class="mb-12 fade-in delay-100">
-            <!-- Removed circular styling as the provided PNG is already circular -->
-            <div class="relative w-48 h-48 md:w-64 md:h-64 profile-img-container flex items-center justify-center">
-                <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Nitin's Profile" class="w-full h-full object-contain" oncontextmenu="return false;" draggable="false">
-            </div>
-        </section>
-
-        <!-- Age Counter Section -->
-        <section class="text-center mb-12 fade-in delay-200">
-            <p class="text-gray-400 text-lg mb-2">Time is always moving forward, and so are you:</p>
-            <div id="age-display" class="mb-4"></div>
-            <p class="text-gray-500 text-sm">Yrs = Years, D = Days, Mins = Minutes</p>
-        </section>
-
-        <!-- New Section for Quotes with Glitch/Typewriter Effect -->
-        <section class="w-full max-w-4xl mb-12">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron fade-in delay-300">
-                System Logs: Milestones Unlocked
-            </h2>
-            <div id="quotes-container" class="space-y-4 px-4">
-                <!-- Quotes will be dynamically added here with effects -->
-            </div>
-        </section>
-
-        <!-- Photos Section - Updated for Collage Look -->
-        <section class="w-full max-w-4xl mb-12 fade-in delay-400">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron">
-                Moments Captured
-            </h2>
-            <div class="image-collage-container">
-                <!-- Happy Birthday Overlay Text -->
-                <p class="hbd-overlay-text">HAPPY BIRTHDAY!!</p>
-
-                <!-- Image HBD1.jpg -->
-                <div class="collage-item">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="Nitin's Photo 1" oncontextmenu="return false;" draggable="false">
-                </div>
-                <!-- Image HBD2.jpg -->
-                <div class="collage-item">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="Nitin's Photo 2" oncontextmenu="return false;" draggable="false">
-                </div>
-                <!-- Image HBD3.jpg -->
-                <div class="collage-item">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="Nitin's Photo 3" oncontextmenu="return false;" draggable="false">
-                </div>
-                <!-- Image HBD4.jpg -->
-                <div class="collage-item">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="Nitin's Photo 4" oncontextmenu="return false;" draggable="false">
-                </div>
-            </div>
-        </section>
-
-        <!-- Videos Section -->
-        <section class="w-full max-w-4xl mb-12 fade-in delay-500">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron">
-                Future Visions
-            </h2>
-            <div class="card rounded-lg p-6">
-                <div class="video-placeholder w-full h-64 rounded-md mb-4">
-                    <p>Video content goes here</p>
-                </div>
-                <p class="text-gray-300 text-center">Imagine the incredible moments yet to come.</p>
-            </div>
-        </section>
-
-        <!-- Footer Section -->
-        <footer class="text-center text-gray-600 text-sm mt-12 fade-in delay-600">
-            <p>&copy; 2025 A journey of growth and endless possibilities.</p>
-        </footer>
+<body>
+  <h1 class="title">Legendary Birthday Vibes</h1>
+  <div class="age-counter" id="age">Loading age...</div>  <div class="profile-slider">
+    <div class="slider-track">
+      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1">
+      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2">
+      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3">
+      <img class="glow" src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4">
     </div>
+  </div>  <div class="quote-box" id="quote">Initializing...</div>
+  <button class="share-btn" onclick="sharePage()">Share This ✨</button>
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://raw.githubusercontent.com/RARExSIGMA2025/HBD/main/surrender.mp3" type="audio/mpeg">
+  </audio>  <script>
+    // Age Calculation
+    const birth = new Date("2009-07-23T05:30:00+05:30");
+    const ageBox = document.getElementById("age");
+    setInterval(() => {
+      const now = new Date();
+      let diff = now - birth;
+      let minutes = (diff / 60000).toFixed(3);
+      let years = Math.floor(minutes / 525600);
+      minutes %= 525600;
+      let days = Math.floor(minutes / 1440);
+      minutes %= 1440;
+      let hours = Math.floor(minutes / 60);
+      minutes = (minutes % 60).toFixed(3);
+      ageBox.textContent = `${years}y ${days}d ${hours}h ${minutes}m`;
+    }, 1000);
 
-    <script>
-        // JavaScript for dynamic age calculation and animations
+    // Quote Changer
+    const quotes = [
+      "Every version of you breaks the previous one. That’s how legends evolve.",
+      "Not a king. Not a god. Just a new definition.",
+      "Your presence bends timelines. That’s power.",
+      "Legacy isn't inherited, it's constructed — brick by attitude.",
+      "No upgrades left. This is final form.",
+      "If time could speak, it would whisper your name."
+    ];
+    const quoteBox = document.getElementById("quote");
+    function changeQuote() {
+      quoteBox.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
+    setInterval(changeQuote, 5000);
+    changeQuote();
 
-        // Birth date of Nitin
-        const birthDate = new Date('2009-07-23T00:00:00'); // July 23, 2009, 00:00:00
+    // Hacker Mode (Triple Tap)
+    let tapCount = 0;
+    document.body.addEventListener("click", () => {
+      tapCount++;
+      if (tapCount === 3) {
+        document.body.classList.toggle("hacker-mode");
+        tapCount = 0;
+      }
+      setTimeout(() => tapCount = 0, 1000);
+    });
 
-        // Record the time when the page loaded
-        const pageLoadTime = Date.now(); // Milliseconds since epoch
-
-        // Calculate initial total minutes from birth date to page load time
-        const initialTotalMinutes = (pageLoadTime - birthDate.getTime()) / (1000 * 60);
-
-        /**
-         * Formats a given number of minutes into a human-readable string
-         * with years, days, and minutes.
-         * @param {number} totalMinutes - The total number of minutes.
-         * @returns {string} Formatted age string.
-         */
-        function formatAge(totalMinutes) {
-            // Calculate years (using 365.25 days per year for average)
-            const minutesInYear = 365.25 * 24 * 60;
-            const years = Math.floor(totalMinutes / minutesInYear);
-            let remainingMinutes = totalMinutes % minutesInYear;
-
-            // Calculate days
-            const minutesInDay = 24 * 60;
-            const days = Math.floor(remainingMinutes / minutesInDay);
-            remainingMinutes %= minutesInDay;
-
-            // Calculate minutes (with decimals)
-            const minutes = remainingMinutes;
-
-            // Format to 3 decimal places for minutes
-            const formattedMinutes = minutes.toFixed(3);
-
-            return `${years} Yrs ${days} D ${formattedMinutes} Mins`;
-        }
-
-        /**
-         * Updates the age display every millisecond.
-         */
-        function updateAge() {
-            const currentTime = Date.now();
-            const elapsedMilliseconds = currentTime - pageLoadTime;
-            const elapsedMinutes = elapsedMilliseconds / (1000 * 60);
-
-            const currentTotalMinutes = initialTotalMinutes + elapsedMinutes;
-
-            document.getElementById('age-display').textContent = formatAge(currentTotalMinutes);
-        }
-
-        // Set up the interval to update the age display
-        setInterval(updateAge, 10); // Update every 10 milliseconds for smooth decimal changes
-
-        // Intersection Observer for fade-in animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const fadeElements = document.querySelectorAll('.fade-in');
-
-            const observerOptions = {
-                root: null, // relative to the viewport
-                rootMargin: '0px',
-                threshold: 0.1 // 10% of the item visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('appear');
-                        observer.unobserve(entry.target); // Stop observing once it's appeared
-                    }
-                });
-            }, observerOptions);
-
-            fadeElements.forEach(el => {
-                observer.observe(el);
-            });
-
-            // Ensure initial age is displayed immediately
-            updateAge();
-
-            // Quotes for the new section
-            const quotes = [
-                "You didn’t enter the world — you deployed.",
-                "Every version of you breaks the previous one. That’s how legends evolve.",
-                "No patch, no update — just raw execution. Birthday level: MASTERED.",
-                "You run life like a custom script. Smooth. Powerful. Unmatched.",
-                "Your aura? Encrypted.\nYour flow? Untouchable.\nHappy Unlock Day, code beast.",
-                "People search for greatness. You render it in real time.",
-                "Some celebrate birthdays. You trigger them like events in the matrix.",
-                "New age, same dominance. The log file just got heavier."
-            ];
-
-            const quotesContainer = document.getElementById('quotes-container');
-            let delay = 0; // Initial delay for the first quote
-
-            quotes.forEach((quoteText, index) => {
-                const p = document.createElement('p');
-                p.classList.add('quote-container', 'text-lg', 'md:text-xl', 'mb-4', 'text-center');
-                p.setAttribute('data-text', quoteText); // Store original text for glitch effect
-                quotesContainer.appendChild(p);
-
-                // Start typing animation after a delay
-                setTimeout(() => {
-                    p.style.width = '100%'; // Trigger typing animation
-                    p.classList.add('typing');
-
-                    // After typing, remove typing class and apply glitch briefly
-                    const typingDuration = 3000; // Match CSS transition duration
-                    setTimeout(() => {
-                        p.classList.remove('typing');
-                        p.classList.add('typed'); // Allow text to wrap and remove cursor
-                        p.textContent = quoteText; // Ensure full text is visible
-
-                        // Apply glitch effect briefly
-                        p.classList.add('glitch');
-                        setTimeout(() => {
-                            p.classList.remove('glitch');
-                        }, 500); // Glitch for 0.5 seconds
-                    }, typingDuration);
-
-                }, delay);
-                delay += 3500; // Delay for next quote to start after previous one finishes typing
-            });
+    // Share Button
+    function sharePage() {
+      if (navigator.share) {
+        navigator.share({
+          title: "Nitin's Legendary Birthday",
+          text: "Check out this epic birthday surprise ✨",
+          url: window.location.href
         });
-    </script>
-</body>
-</html>
+      } else {
+        alert("Sharing not supported on this device.");
+      }
+    }
 
+    // Music Fade on Scroll
+    const music = document.getElementById("bgMusic");
+    window.addEventListener("scroll", () => {
+      let volume = Math.max(0, 1 - window.scrollY / 500);
+      music.volume = volume;
+    });
+  </script></body>
+</html>
