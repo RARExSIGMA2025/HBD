@@ -62,6 +62,9 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none; /* Hide scrollbar for Firefox */
+            /* Ensure enough padding on sides for snapping to work correctly */
+            padding-left: 20px; /* Adjust as needed */
+            padding-right: 20px; /* Adjust as needed */
         }
         .gallery-container::-webkit-scrollbar {
             display: none; /* Hide scrollbar for Chrome, Safari, Edge */
@@ -69,9 +72,19 @@
         .gallery-item {
             scroll-snap-align: center;
             flex-shrink: 0;
-            width: 90vw;
-            max-width: 300px;
+            width: 80vw; /* Adjusted for better mobile fit */
+            max-width: 300px; /* Max width for larger screens */
             border: 1px solid #3a004a; /* Darker purple border */
+        }
+        @media (min-width: 768px) {
+            .gallery-item {
+                width: 280px; /* Slightly larger on tablets */
+            }
+        }
+        @media (min-width: 1024px) {
+            .gallery-item {
+                width: 320px; /* Larger on desktops */
+            }
         }
         .gallery-item img {
             filter: brightness(0.9) contrast(1.1); /* Slightly desaturate/contrast for tech feel */
@@ -99,14 +112,26 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start; /* Align text to the left */
-            padding-left: 5vw; /* Padding from the left edge */
+            padding: 0 5vw; /* Responsive padding for all sides */
             z-index: 1000; /* Ensure it's on top */
             font-family: 'VT323', monospace;
             color: #00ff00; /* Green text for terminal */
-            font-size: 1.2rem;
+            font-size: 0.9rem; /* Smaller default font size for mobile */
             opacity: 1;
             transition: opacity 1s ease-out;
         }
+        /* Responsive font size for boot screen */
+        @media (min-width: 640px) { /* Small screens and up */
+            #boot-screen {
+                font-size: 1.1rem;
+            }
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            #boot-screen {
+                font-size: 1.2rem;
+            }
+        }
+
         #boot-screen p {
             margin-bottom: 0.5rem;
             white-space: pre; /* Preserve whitespace for "typing" effect */
@@ -200,7 +225,7 @@
             <!-- Gallery Section -->
             <section class="gallery w-full my-8">
                 <h2 class="text-center text-3xl md:text-4xl font-bold text-purple-400 mb-6 font-['Great_Vibes'] neon-glow">Encrypted Memories</h2>
-                <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 px-4 justify-center">
+                <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4">
                     <!-- Rearranged images: HBD4, HBD3, HBD1, HBD2 -->
                     <div class="gallery-item tech-panel p-3">
                         <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
@@ -271,7 +296,7 @@
             // Display line 1
             setTimeout(() => {
                 bootLine1.textContent = lines[0];
-                bootLine1.style.width = 'fit-content'; // Allow typing animation
+                // No specific width needed, overflow:hidden and white-space:pre handle typing
             }, delay);
 
             // Display line 2 after line 1 finishes typing
@@ -279,7 +304,6 @@
             setTimeout(() => {
                 bootLine1.style.borderRight = '.15em solid transparent'; // Hide cursor for line 1
                 bootLine2.textContent = lines[1];
-                bootLine2.style.width = 'fit-content'; // Allow typing animation
             }, delay);
 
             // Display line 3 after line 2 finishes typing
@@ -287,7 +311,6 @@
             setTimeout(() => {
                 bootLine2.style.borderRight = '.15em solid transparent'; // Hide cursor for line 2
                 bootLine3.textContent = lines[2];
-                bootLine3.style.width = 'fit-content'; // Allow typing animation
             }, delay);
 
             // Fade out boot screen and show main content
