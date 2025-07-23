@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, Nitin!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom styles for animations and gradients */
@@ -13,9 +13,30 @@
             background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); /* Dark, futuristic gradient */
             color: #e2e8f0; /* Light grey text for contrast */
             overflow-x: hidden; /* Prevent horizontal scroll */
+            position: relative; /* For background overlay */
         }
 
-        /* Subtle background animation */
+        /* Sci-Fi Brain Waves Background Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 179, 237, 0.1) 0%, transparent 70%);
+            animation: pulseBackground 20s infinite alternate ease-in-out;
+            z-index: -1; /* Behind content */
+            pointer-events: none; /* Allow clicks through */
+        }
+
+        @keyframes pulseBackground {
+            0% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.1; }
+        }
+
+        /* Subtle background animation for existing gradient */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -40,11 +61,11 @@
         }
 
         /* Profile image animation */
-        .profile-img {
+        .profile-img-container {
             transition: transform 0.5s ease-in-out;
         }
 
-        .profile-img:hover {
+        .profile-img-container:hover {
             transform: scale(1.05);
         }
 
@@ -87,6 +108,90 @@
             color: #a0aec0;
             border: 2px dashed #4a5568;
         }
+
+        /* Typewriter and Glitch Effects for Quotes */
+        .quote-container {
+            font-family: 'Share Tech Mono', monospace; /* Hacking/typewriter font */
+            color: #00ff00; /* Green text for terminal feel */
+            white-space: nowrap; /* Keep text on one line for typing effect */
+            overflow: hidden; /* Hide overflowing text */
+            border-right: 3px solid transparent; /* Blinking cursor */
+            animation: blink-caret .75s step-end infinite;
+            width: 0; /* Start with no width for typing effect */
+            transition: width 0.1s steps(40, end); /* Adjust steps for typing speed */
+            opacity: 0; /* Start hidden for fade-in */
+            transform: translateY(10px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out, width 3s steps(40, end);
+        }
+
+        .quote-container.typing {
+            opacity: 1;
+            transform: translateY(0);
+            width: 100%; /* Expand width to reveal text */
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
+            animation-iteration-count: 1; /* Only play once on entry */
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+        }
+
+        .glitch::before {
+            left: -2px;
+            text-shadow: 1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+        }
+
+        .glitch::after {
+            left: 2px;
+            text-shadow: -1px 0 #00ffc1;
+            clip: rect(85px, 450px, 100px, 0);
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff00; } /* Green cursor */
+        }
+
+        /* Adjustments for quote container to allow text to wrap after typing */
+        .quote-container.typed {
+            white-space: normal;
+            border-right: none; /* Remove cursor after typing */
+            width: auto; /* Allow width to be determined by content */
+        }
     </style>
 </head>
 <body class="animated-bg">
@@ -104,9 +209,9 @@
 
         <!-- Profile Image Section -->
         <section class="mb-12 fade-in delay-100">
-            <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-400 shadow-lg profile-img">
-                <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Nitin's Profile" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-transparent to-black opacity-20 rounded-full"></div>
+            <!-- Removed circular styling as the provided PNG is already circular -->
+            <div class="relative w-48 h-48 md:w-64 md:h-64 profile-img-container flex items-center justify-center">
+                <img src="http://googleusercontent.com/file_content/1" alt="Nitin's Profile" class="w-full h-full object-contain">
             </div>
         </section>
 
@@ -117,33 +222,37 @@
             <p class="text-gray-500 text-sm">Yrs = Years, D = Days, Mins = Minutes</p>
         </section>
 
+        <!-- New Section for Quotes with Glitch/Typewriter Effect -->
+        <section class="w-full max-w-4xl mb-12">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron fade-in delay-300">
+                System Logs: Milestones Unlocked
+            </h2>
+            <div id="quotes-container" class="space-y-4 px-4">
+                <!-- Quotes will be dynamically added here with effects -->
+            </div>
+        </section>
+
         <!-- Photos Section -->
-        <section class="w-full max-w-4xl mb-12 fade-in delay-300">
+        <section class="w-full max-w-4xl mb-12 fade-in delay-400">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron">
                 Moments Captured
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <!-- Placeholder for uploaded image 1000062101.png -->
+                <!-- Image 1000062101.png -->
                 <div class="card rounded-lg p-6 flex flex-col items-center">
-                    <img src="https://placehold.co/600x400/1a202c/e2e8f0?text=Your+Photo+1" alt="Placeholder Photo 1" class="w-full h-auto rounded-md mb-4 shadow-md">
+                    <img src="http://googleusercontent.com/file_content/2" alt="Nitin's Photo 1" class="w-full h-auto rounded-md mb-4 shadow-md">
                     <p class="text-gray-300 text-center">A special memory from your journey.</p>
-                    <p class="text-sm text-gray-500 mt-2">
-                        <!-- Note: Replace the placeholder URL above with the actual URL for 1000062101.png -->
-                    </p>
                 </div>
-                <!-- Placeholder for uploaded image 1000062102.png -->
+                <!-- Image 1000062102.png -->
                 <div class="card rounded-lg p-6 flex flex-col items-center">
-                    <img src="https://placehold.co/600x400/1a202c/e2e8f0?text=Your+Photo+2" alt="Placeholder Photo 2" class="w-full h-auto rounded-md mb-4 shadow-md">
+                    <img src="http://googleusercontent.com/file_content/3" alt="Nitin's Photo 2" class="w-full h-auto rounded-md mb-4 shadow-md">
                     <p class="text-gray-300 text-center">Another glimpse into your wonderful life.</p>
-                    <p class="text-sm text-gray-500 mt-2">
-                        <!-- Note: Replace the placeholder URL above with the actual URL for 1000062102.png -->
-                    </p>
                 </div>
             </div>
         </section>
 
         <!-- Videos Section -->
-        <section class="w-full max-w-4xl mb-12 fade-in delay-400">
+        <section class="w-full max-w-4xl mb-12 fade-in delay-500">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron">
                 Future Visions
             </h2>
@@ -152,15 +261,11 @@
                     <p>Video content goes here</p>
                 </div>
                 <p class="text-gray-300 text-center">Imagine the incredible moments yet to come.</p>
-                <p class="text-sm text-gray-500 mt-2">
-                    <!-- You can embed YouTube/Vimeo videos here, e.g., using an iframe -->
-                    <!-- <iframe width="100%" height="315" src="YOUR_VIDEO_EMBED_URL" frameborder="0" allowfullscreen></iframe> -->
-                </p>
             </div>
         </section>
 
         <!-- Footer Section -->
-        <footer class="text-center text-gray-600 text-sm mt-12 fade-in delay-500">
+        <footer class="text-center text-gray-600 text-sm mt-12 fade-in delay-600">
             <p>&copy; 2025 A journey of growth and endless possibilities.</p>
         </footer>
     </div>
@@ -183,7 +288,7 @@
             initialMinutes;
 
         // Record the time when the page loaded
-        const pageLoadTime = Date.now(); // Milliseconds since epoch
+        const pageLoadTime = Date.2025; // Milliseconds since epoch
 
         /**
          * Formats a given number of minutes into a human-readable string
@@ -252,6 +357,50 @@
 
             // Ensure initial age is displayed immediately
             updateAge();
+
+            // Quotes for the new section
+            const quotes = [
+                "You didn’t enter the world — you deployed.",
+                "Every version of you breaks the previous one. That’s how legends evolve.",
+                "No patch, no update — just raw execution. Birthday level: MASTERED.",
+                "You run life like a custom script. Smooth. Powerful. Unmatched.",
+                "Your aura? Encrypted.\nYour flow? Untouchable.\nHappy Unlock Day, code beast.",
+                "People search for greatness. You render it in real time.",
+                "Some celebrate birthdays. You trigger them like events in the matrix.",
+                "New age, same dominance. The log file just got heavier."
+            ];
+
+            const quotesContainer = document.getElementById('quotes-container');
+            let delay = 0; // Initial delay for the first quote
+
+            quotes.forEach((quoteText, index) => {
+                const p = document.createElement('p');
+                p.classList.add('quote-container', 'text-lg', 'md:text-xl', 'mb-4', 'text-center');
+                p.setAttribute('data-text', quoteText); // Store original text for glitch effect
+                quotesContainer.appendChild(p);
+
+                // Start typing animation after a delay
+                setTimeout(() => {
+                    p.style.width = '100%'; // Trigger typing animation
+                    p.classList.add('typing');
+
+                    // After typing, remove typing class and apply glitch briefly
+                    const typingDuration = 3000; // Match CSS transition duration
+                    setTimeout(() => {
+                        p.classList.remove('typing');
+                        p.classList.add('typed'); // Allow text to wrap and remove cursor
+                        p.textContent = quoteText; // Ensure full text is visible
+
+                        // Apply glitch effect briefly
+                        p.classList.add('glitch');
+                        setTimeout(() => {
+                            p.classList.remove('glitch');
+                        }, 500); // Glitch for 0.5 seconds
+                    }, typingDuration);
+
+                }, delay);
+                delay += 3500; // Delay for next quote to start after previous one finishes typing
+            });
         });
     </script>
 </body>
