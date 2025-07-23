@@ -63,8 +63,7 @@
         /* Profile image animation */
         .profile-img-container {
             transition: transform 0.5s ease-in-out;
-            /* Added pointer-events: none to prevent right-click/download */
-            pointer-events: none;
+            pointer-events: none; /* Prevent right-click/download */
         }
 
         .profile-img-container:hover {
@@ -87,7 +86,7 @@
             }
         }
 
-        /* Card styling for images */
+        /* Card styling for general sections */
         .card {
             background-color: rgba(45, 55, 72, 0.7); /* Slightly transparent dark background */
             backdrop-filter: blur(5px); /* Frosted glass effect */
@@ -100,27 +99,6 @@
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
-
-        /* Image within card for consistent height and hover effect */
-        .card-image-wrapper {
-            width: 100%;
-            height: 256px; /* Fixed height for all images (h-64 in Tailwind) */
-            overflow: hidden; /* Hide parts of image if it doesn't fit */
-            border-radius: 0.375rem; /* rounded-md */
-            margin-bottom: 1rem; /* mb-4 */
-        }
-
-        .card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Cover the area, cropping if necessary */
-            transition: transform 0.3s ease-in-out; /* Smooth zoom on hover */
-        }
-
-        .card-image:hover {
-            transform: scale(1.05); /* Zoom in effect */
-        }
-
 
         .video-placeholder {
             background-color: rgba(0, 0, 0, 0.5);
@@ -215,6 +193,122 @@
             border-right: none; /* Remove cursor after typing */
             width: auto; /* Allow width to be determined by content */
         }
+
+        /* Image Collage Specific Styles */
+        .image-collage-container {
+            position: relative;
+            width: 100%;
+            min-height: 550px; /* Adjust height as needed for collage layout */
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .collage-item {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.1); /* Subtle background for the "paper" */
+            padding: 0.5rem; /* Padding to simulate torn edges */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, z-index 0.1s;
+            cursor: default; /* Prevent pointer changes */
+            user-select: none; /* Prevent text selection */
+            pointer-events: none; /* Disable interaction with the item itself */
+        }
+
+        .collage-item:hover {
+            transform: scale(1.03) rotate(var(--rotation, 0deg)) translateY(-5px); /* Lift and slightly zoom on hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            z-index: 10; /* Bring to front on hover */
+        }
+
+        .collage-item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.25rem; /* Slightly rounded corners for the image itself */
+            pointer-events: none; /* Crucial for download prevention */
+            user-select: none;
+        }
+
+        /* Specific positioning and rotation for each image */
+        .collage-item:nth-child(1) { /* HBD1.jpg */
+            width: 200px; height: 200px;
+            top: 5%; left: 10%;
+            transform: rotate(-8deg);
+            --rotation: -8deg;
+            z-index: 2;
+        }
+        .collage-item:nth-child(2) { /* HBD2.jpg */
+            width: 220px; height: 180px;
+            top: 15%; right: 15%;
+            transform: rotate(12deg);
+            --rotation: 12deg;
+            z-index: 3;
+        }
+        .collage-item:nth-child(3) { /* HBD3.jpg */
+            width: 250px; height: 200px;
+            bottom: 10%; left: 5%;
+            transform: rotate(3deg);
+            --rotation: 3deg;
+            z-index: 4;
+        }
+        .collage-item:nth-child(4) { /* HBD4.jpg */
+            width: 230px; height: 250px;
+            bottom: 5%; right: 10%;
+            transform: rotate(-10deg);
+            --rotation: -10deg;
+            z-index: 5;
+        }
+
+        /* Responsive adjustments for collage items */
+        @media (max-width: 768px) {
+            .image-collage-container {
+                min-height: 700px; /* Adjust height for mobile stacking */
+            }
+            .collage-item {
+                position: relative; /* Stack items on mobile */
+                width: 80%; /* Make them wider */
+                height: auto; /* Auto height */
+                margin: 1rem auto; /* Center and add margin */
+                transform: none !important; /* Remove rotations on mobile */
+                --rotation: 0deg;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                z-index: auto !important;
+                pointer-events: auto; /* Re-enable pointer events for mobile if needed, but still prevent download */
+                oncontextmenu="return false;" draggable="false";
+            }
+            .collage-item img {
+                height: 200px; /* Fixed height for consistency on mobile */
+            }
+        }
+
+        /* Happy Birthday Overlay Text */
+        .hbd-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg); /* Center and rotate */
+            font-size: 3rem; /* Large text */
+            font-weight: bold;
+            text-align: center;
+            color: transparent;
+            background-clip: text;
+            background-image: linear-gradient(to right, #a78bfa, #f472b6, #f87171); /* Gradient color */
+            opacity: 0.8;
+            font-family: 'Orbitron', sans-serif;
+            z-index: 6; /* Ensure it's above some images */
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+
+        @media (max-width: 768px) {
+            .hbd-overlay-text {
+                font-size: 2rem;
+                transform: translate(-50%, -50%) rotate(-3deg);
+            }
+        }
     </style>
 </head>
 <body class="animated-bg">
@@ -255,39 +349,30 @@
             </div>
         </section>
 
-        <!-- Photos Section -->
+        <!-- Photos Section - Updated for Collage Look -->
         <section class="w-full max-w-4xl mb-12 fade-in delay-400">
             <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-blue-300 font-orbitron">
                 Moments Captured
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div class="image-collage-container">
+                <!-- Happy Birthday Overlay Text -->
+                <p class="hbd-overlay-text">HAPPY BIRTHDAY!!</p>
+
                 <!-- Image HBD1.jpg -->
-                <div class="card rounded-lg p-6 flex flex-col items-center">
-                    <div class="card-image-wrapper">
-                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="Nitin's Photo 1" class="card-image" oncontextmenu="return false;" draggable="false">
-                    </div>
-                    <p class="text-gray-300 text-center">A special memory from your journey.</p>
+                <div class="collage-item">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="Nitin's Photo 1" oncontextmenu="return false;" draggable="false">
                 </div>
                 <!-- Image HBD2.jpg -->
-                <div class="card rounded-lg p-6 flex flex-col items-center">
-                    <div class="card-image-wrapper">
-                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="Nitin's Photo 2" class="card-image" oncontextmenu="return false;" draggable="false">
-                    </div>
-                    <p class="text-gray-300 text-center">Another glimpse into your wonderful life.</p>
+                <div class="collage-item">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="Nitin's Photo 2" oncontextmenu="return false;" draggable="false">
                 </div>
                 <!-- Image HBD3.jpg -->
-                <div class="card rounded-lg p-6 flex flex-col items-center">
-                    <div class="card-image-wrapper">
-                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="Nitin's Photo 3" class="card-image" oncontextmenu="return false;" draggable="false">
-                    </div>
-                    <p class="text-gray-300 text-center">More memories, more growth.</p>
+                <div class="collage-item">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="Nitin's Photo 3" oncontextmenu="return false;" draggable="false">
                 </div>
                 <!-- Image HBD4.jpg -->
-                <div class="card rounded-lg p-6 flex flex-col items-center">
-                    <div class="card-image-wrapper">
-                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="Nitin's Photo 4" class="card-image" oncontextmenu="return false;" draggable="false">
-                    </div>
-                    <p class="text-gray-300 text-center">Reflecting on moments that shape you.</p>
+                <div class="collage-item">
+                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="Nitin's Photo 4" oncontextmenu="return false;" draggable="false">
                 </div>
             </div>
         </section>
