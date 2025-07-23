@@ -86,9 +86,67 @@
             border: 4px solid #8e2de2; /* Purple border */
             box-shadow: 0 0 15px #8e2de2, 0 0 30px #6a0572; /* Inner and outer glow */
         }
+
+        /* Boot screen overlay styles */
+        #boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d0d1a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Align text to the left */
+            padding-left: 5vw; /* Padding from the left edge */
+            z-index: 1000; /* Ensure it's on top */
+            font-family: 'VT323', monospace;
+            color: #00ff00; /* Green text for terminal */
+            font-size: 1.2rem;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+        #boot-screen p {
+            margin-bottom: 0.5rem;
+            white-space: pre; /* Preserve whitespace for "typing" effect */
+            overflow: hidden; /* Hide overflowing text */
+            border-right: .15em solid #00ff00; /* Blinking cursor */
+            animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        /* Remove typing animation for subsequent lines, just blink cursor */
+        #boot-screen p:not(:first-child) {
+            animation: blink-caret .75s step-end infinite;
+            border-right: .15em solid transparent; /* Hide initial border */
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff00; }
+        }
+
+        .hidden-content {
+            opacity: 0;
+            pointer-events: none; /* Disable interactions while hidden */
+        }
+        .visible-content {
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity 1s ease-in;
+        }
     </style>
 </head>
 <body oncontextmenu="return false" onkeydown="return !(event.keyCode == 123 || (event.ctrlKey && event.shiftKey && event.keyCode == 73));" class="flex flex-col items-center justify-between">
+
+    <!-- Boot Screen Overlay -->
+    <div id="boot-screen">
+        <p id="boot-line1" class="text-green-400"></p>
+        <p id="boot-line2" class="text-green-400"></p>
+        <p id="boot-line3" class="text-green-400"></p>
+    </div>
 
     <!-- Background Music -->
     <audio id="birthdayAudio" autoplay loop>
@@ -96,67 +154,86 @@
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Header Section -->
-    <header class="w-full py-8 text-center bg-transparent rounded-b-3xl">
-        <h1 class="font-['Great_Vibes'] text-6xl md:text-7xl lg:text-8xl text-purple-400 font-extrabold tracking-wide neon-glow">
-            Happy Birthday Nitin!
-        </h1>
-        <p class="text-sm md:text-base text-gray-400 mt-2 font-['VT323']">
-            // Initiating birthday protocol... Access granted.
-        </p>
-    </header>
+    <!-- Main Content Area (initially hidden) -->
+    <div id="main-content" class="hidden-content w-full flex flex-col items-center justify-between flex-grow">
+        <!-- Header Section -->
+        <header class="w-full py-8 text-center bg-transparent rounded-b-3xl">
+            <h1 class="font-['Great_Vibes'] text-6xl md:text-7xl lg:text-8xl text-purple-400 font-extrabold tracking-wide neon-glow">
+                Happy Birthday Nitin!
+            </h1>
+            <p class="text-sm md:text-base text-gray-400 mt-2 font-['VT323']">
+                // Initiating birthday protocol... Access granted.
+            </p>
+        </header>
 
-    <!-- Main Content Area -->
-    <main class="flex-grow container mx-auto p-4 md:p-8 flex flex-col items-center">
+        <!-- Main Content Sections -->
+        <main class="flex-grow container mx-auto p-4 md:p-8 flex flex-col items-center">
 
-        <!-- Profile Section -->
-        <section class="profile my-8 tech-panel p-6 flex flex-col items-center">
-            <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture" class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full transition-transform duration-300 hover:scale-105 profile-img-glow">
-            <div id="age" class="age-counter mt-6 text-2xl md:text-3xl font-['VT323'] text-green-400 neon-glow blinking-cursor">
-                System Uptime: Calculating...
-            </div>
-        </section>
-
-        <!-- Message Section -->
-        <section class="message w-full max-w-2xl my-8 p-6 tech-panel rounded-xl text-center text-gray-300 leading-relaxed text-lg md:text-xl border-l-4 border-green-500">
-            <p>// Log Entry: Subject Nitin. You are the architect of your digital destiny, a true enthusiast navigating the intricate networks of knowledge. On this node's activation day, we acknowledge your skill and unwavering spirit. Continue to decrypt life's challenges with the same precision and fearlessness. Happy Birthday, Hacker. // End Log.</p>
-        </section>
-
-        <!-- Gallery Section -->
-        <section class="gallery w-full my-8">
-            <h2 class="text-center text-3xl md:text-4xl font-bold text-purple-400 mb-6 font-['Great_Vibes'] neon-glow">Encrypted Memories</h2>
-            <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 px-4 justify-center">
-                <!-- Rearranged images: HBD4, HBD3, HBD1, HBD2 -->
-                <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+            <!-- Profile Section -->
+            <section class="profile my-8 tech-panel p-6 flex flex-col items-center">
+                <img src="https://i.ibb.co/BVZ325R4/HBD.png" alt="Profile Picture" class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full transition-transform duration-300 hover:scale-105 profile-img-glow">
+                <div id="age" class="age-counter mt-6 text-2xl md:text-3xl font-['VT323'] text-green-400 neon-glow blinking-cursor">
+                    🌍 Earth Uplink Initialized: Calculating...
                 </div>
-                <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
-                </div>
-                <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
-                </div>
-                <div class="gallery-item tech-panel p-3">
-                    <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
-                </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+            <!-- Message Section -->
+            <section class="message w-full max-w-2xl my-8 p-6 tech-panel rounded-xl text-center text-gray-300 leading-relaxed text-lg md:text-xl border-l-4 border-green-500">
+                <p>// Log Entry </> You're not just a person in my life —
+    You're a rare algorithm that keeps everything running smooth.
+    In this world of temporary connections, you're a permanent commit in my life's repo.
 
-    <!-- Footer Section -->
-    <footer class="w-full py-6 text-center bg-transparent text-gray-500 text-xs rounded-t-3xl shadow-inner mt-auto font-['VT323']">
-        // © 2025 Birthday Protocol Executed by Ayu. All rights reserved. //
-    </footer>
+    No lag, no bugs — just pure presence.
+    You’ve always shown that strength isn’t noise — it’s silent confidence.
+
+    May your life execute with zero errors,
+    compile success line by line,
+    and always run on the latest version of purpose + peace.
+
+    You don't chase the spotlight —
+    You are the source code of greatness.
+
+    🖤 With encrypted respect and silent pride,
+    — From someone who never forgets the real ones. // End Log.</p>
+            </section>
+
+            <!-- Gallery Section -->
+            <section class="gallery w-full my-8">
+                <h2 class="text-center text-3xl md:text-4xl font-bold text-purple-400 mb-6 font-['Great_Vibes'] neon-glow">Encrypted Memories</h2>
+                <div class="gallery-container flex overflow-x-scroll snap-x snap-mandatory gap-6 pb-4 px-4 justify-center">
+                    <!-- Rearranged images: HBD4, HBD3, HBD1, HBD2 -->
+                    <div class="gallery-item tech-panel p-3">
+                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD4.jpg" alt="HBD4" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                    </div>
+                    <div class="gallery-item tech-panel p-3">
+                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD3.jpg" alt="HBD3" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                    </div>
+                    <div class="gallery-item tech-panel p-3">
+                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD1.jpg" alt="HBD1" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                    </div>
+                    <div class="gallery-item tech-panel p-3">
+                        <img src="https://raw.githubusercontent.com/2025xsukoon/CP/main/Graphics/HBD2.jpg" alt="HBD2" class="w-full h-auto object-cover rounded-lg shadow-md transition-transform duration-300">
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="w-full py-6 text-center bg-transparent text-gray-500 text-xs rounded-t-3xl shadow-inner mt-auto font-['VT323']">
+            // © 2025 Birthday Protocol Executed by Ayu. //
+        </footer>
+    </div>
 
     <script>
-        // Function to update the age counter, now formatted as "System Uptime"
-        function updateAge() {
-            const birth = new Date("2009-07-23T05:30:00"); // Nitin's birth date and time
-            const now = new Date(); // Current date and time
-            const diff = now - birth; // Difference in milliseconds
+        // Birth date for calculations
+        const birthDate = new Date("2009-07-23T05:30:00");
 
-            // Calculate years, days, hours, minutes, and milliseconds
+        // Function to update the main age counter with milliseconds
+        function updateAge() {
+            const now = new Date();
+            const diff = now - birthDate;
+
             const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
             const remaining = diff % (1000 * 60 * 60 * 24 * 365.25);
             const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
@@ -166,16 +243,72 @@
             const mins = Math.floor(remainingHours / (1000 * 60));
             const remainingMins = remainingHours % (1000 * 60);
             const secs = Math.floor(remainingMins / 1000);
-            const ms = Math.floor(remainingMins % 1000); // Milliseconds
+            const ms = Math.floor(remainingMins % 1000);
 
-            // Update the age display with a "System Uptime" format including milliseconds
-            document.getElementById("age").innerHTML = `System Uptime: ${years} yrs ${days} days ${hours} hrs ${mins} mins ${secs} secs ${ms} ms<span class="blinking-cursor"></span>`;
+            document.getElementById("age").innerHTML = `🌍 Earth Uplink Initialized: ${years} yrs ${days} days ${hours} hrs ${mins} mins ${secs} secs ${ms} ms<span class="blinking-cursor"></span>`;
         }
 
-        // Initial call to update age
-        updateAge();
-        // Update age more frequently to show milliseconds (every 100ms)
-        setInterval(updateAge, 100);
+        // Boot animation sequence
+        function initBootAnimation() {
+            const bootScreen = document.getElementById('boot-screen');
+            const mainContent = document.getElementById('main-content');
+            const bootLine1 = document.getElementById('boot-line1');
+            const bootLine2 = document.getElementById('boot-line2');
+            const bootLine3 = document.getElementById('boot-line3');
+
+            // Calculate current age in years for the boot animation
+            const now = new Date();
+            const currentYears = Math.floor((now - birthDate) / (1000 * 60 * 60 * 24 * 365.25));
+
+            const lines = [
+                "System Log: 23 July 2009 - A legend booted into the world",
+                `Uptime: ${currentYears} Years and counting...`,
+                "Status: Alive. Upgrading. Unstoppable."
+            ];
+
+            let delay = 500; // Initial delay before first line appears
+
+            // Display line 1
+            setTimeout(() => {
+                bootLine1.textContent = lines[0];
+                bootLine1.style.width = 'fit-content'; // Allow typing animation
+            }, delay);
+
+            // Display line 2 after line 1 finishes typing
+            delay += 2500; // Time for line 1 typing + small pause
+            setTimeout(() => {
+                bootLine1.style.borderRight = '.15em solid transparent'; // Hide cursor for line 1
+                bootLine2.textContent = lines[1];
+                bootLine2.style.width = 'fit-content'; // Allow typing animation
+            }, delay);
+
+            // Display line 3 after line 2 finishes typing
+            delay += 2500; // Time for line 2 typing + small pause
+            setTimeout(() => {
+                bootLine2.style.borderRight = '.15em solid transparent'; // Hide cursor for line 2
+                bootLine3.textContent = lines[2];
+                bootLine3.style.width = 'fit-content'; // Allow typing animation
+            }, delay);
+
+            // Fade out boot screen and show main content
+            delay += 2500; // Time for line 3 typing + small pause
+            setTimeout(() => {
+                bootScreen.style.opacity = '0'; // Start fade out
+                mainContent.classList.remove('hidden-content');
+                mainContent.classList.add('visible-content');
+                // Start the main age counter updates only after boot animation
+                updateAge();
+                setInterval(updateAge, 100);
+            }, delay);
+
+            // Remove boot screen from DOM after transition
+            setTimeout(() => {
+                bootScreen.remove();
+            }, delay + 1000); // 1 second for fade-out transition
+        }
+
+        // Start boot animation when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', initBootAnimation);
 
         // Optional: Play audio on user interaction for better browser compatibility
         document.addEventListener('DOMContentLoaded', () => {
